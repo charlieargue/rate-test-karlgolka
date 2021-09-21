@@ -1,0 +1,14 @@
+.logo {
+  display: block;
+  text-decoration: none;
+  transform: scale(2.5);
+  padding: 20px;
+  margin-left: 85px;
+}
+.logo span {
+  background: -webkit-linear-gradient(#dbcec0, #a02025, #2b2827);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+  padding-right: 10px;
+}

@@ -1,19 +1,20 @@
 import React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { ReactComponent as NxLogo } from '../public/nx-logo-white.svg';
 import './styles.css';
+import Logo from '../app/logo/Logo';
+import Button from '../app/button/Button';
 
-function CustomApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to rate-test-karlgolka-fe!</title>
+        <title>Memory Game!</title>
       </Head>
       <div className="app">
-        <header className="flex">
-          <NxLogo width="75" height="50" />
-          <h1>Welcome to rate-test-karlgolka-fe!</h1>
+        <header>
+          <Logo />
+          <Button />
         </header>
         <main>
           <Component {...pageProps} />
@@ -23,4 +24,4 @@ function CustomApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default CustomApp;
+export default App;
