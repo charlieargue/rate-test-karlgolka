@@ -23,11 +23,11 @@ resource "aws_dynamodb_table" "game_dynamo_table" {
     name = "id"
     type = "S"
   }
-   attribute {
+  attribute {
     name = "createdAt"
     type = "S"
   }
-   attribute {
+  attribute {
     name = "updatedAt"
     type = "S"
   }
