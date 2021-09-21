@@ -1,14 +1,9 @@
 import React from 'react';
-import Card from '../app/card/Card';
+import GameContainer from '../app/game-container/GameContainer';
 
-import styles from './index.module.scss';
-
-// aka Game Container
 export function Index() {
   return (
-    <div className={styles.page}>
-      <Card />
-    </div>
+    <GameContainer />
   );
 }
 

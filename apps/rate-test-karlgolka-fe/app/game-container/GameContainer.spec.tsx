@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Index from '../pages';
+import GameContainer from './GameContainer';
 
-describe('Index', () => {
+describe('GameContainer', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Index />);
+    const { baseElement } = render(<GameContainer />);
     expect(baseElement).toBeTruthy();
   });
 });

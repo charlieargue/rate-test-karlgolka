@@ -3,11 +3,13 @@ import React from 'react';
 import styles from './Button.module.scss';
 
 /* eslint-disable-next-line */
-export interface ButtonProps { }
+export interface ButtonProps {
+  children?: string | React.ReactChildren
+}
 
-export function Button(props: ButtonProps) {
+export function Button({ children, ...props }: ButtonProps) {
   return (
-    <button type="button" className={styles.button}>New Game</button>
+    <button type="button" className={styles.button} {...props}>{children}</button>
   );
 }
 

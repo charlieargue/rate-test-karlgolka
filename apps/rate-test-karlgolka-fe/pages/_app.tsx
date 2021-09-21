@@ -4,6 +4,7 @@ import Head from 'next/head';
 import './styles.css';
 import Logo from '../app/logo/Logo';
 import Button from '../app/button/Button';
+import NewGameButton from '../app/new-game-button/NewGameButton';
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -14,7 +15,7 @@ function App({ Component, pageProps }: AppProps) {
       <div className="app">
         <header>
           <Logo />
-          <Button />
+          <NewGameButton />
         </header>
         <main>
           <Component {...pageProps} />

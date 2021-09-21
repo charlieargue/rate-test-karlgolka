@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Index from '../pages';
+import NewGameButton from './NewGameButton';
 
-describe('Index', () => {
+describe('NewGameButton', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Index />);
+    const { baseElement } = render(<NewGameButton />);
     expect(baseElement).toBeTruthy();
   });
 });
