@@ -37,3 +37,17 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#  Local .terraform directories
+**/.terraform/**/*
+**/.terraform/**/*
+
+# .tfstate files
+**/*.tfstate
+**/*.tfstate.*
+# this should be in git:
+!**/.terraform.lock.hcl
+
+# .tfvars files
+**/*.tfvars
+
