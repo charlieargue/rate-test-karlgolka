@@ -10,7 +10,7 @@ resource "aws_iam_role_policy" "iam_role_policy_for_dynamo" {
   name = "${local.common_tags.AppPrefix}iam_role_policy_for_dynamo_${local.common_tags.Environment}"
   role = aws_iam_role.iam_role_for_dynamo.id
   policy = templatefile("./AppSync/policies-roles/DynamoDB/policy.json", {
-    GAME_TABLE_ARN    = aws_dynamodb_table.game_dynamo_table.arn,
+    GAME_TABLE_ARN = aws_dynamodb_table.game_dynamo_table.arn,
   })
 }
 
