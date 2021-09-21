@@ -1,9 +1,20 @@
 .logo {
   display: block;
   text-decoration: none;
-  transform: scale(2.5);
+  transform: scale(1.5);
   padding: 20px;
-  margin-left: 85px;
+  margin-left: 25px;
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media (min-width: 768px) {
+    margin-left: 85px;
+    transform: scale(2);
+  }
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media (min-width: 992px) {
+    transform: scale(2.5);
+    margin-left: 85px;
+  }
 }
 .logo span {
   background: -webkit-linear-gradient(#dbcec0, #a02025, #2b2827);

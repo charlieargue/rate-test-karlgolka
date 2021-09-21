@@ -12,6 +12,7 @@ type Card {
   id: ID!
   name: String!
   isTurned: Boolean!
+  isMatched: Boolean!
   createdAt: String!
   updatedAt: String!
 }
