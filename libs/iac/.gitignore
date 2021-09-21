@@ -1,0 +1,75 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode (just because I am the only developer for now, normally not-like-this)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/bookmarks.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+
+# dotenv environment variables file
+!**/.env.dist
+**/.env
+**/.env.local
+**/.env.production
+**/.env.test
+**/.env.development.local
+**/.env.test.local
+**/.env.mock.local
+**/.env.production.local
+
+# stupid files
+.DS_Store
+
+# JSON database (for mocked api)
+libs/mock-api/mock-database.json
+**/.vercel
+
+#  Local .terraform directories
+**/.terraform/**/*
+**/.terraform/**/*
+
+# .tfstate files
+**/*.tfstate
+**/*.tfstate.*
+# this should be in git:
+!**/.terraform.lock.hcl
+
+# .tfvars files
+**/*.tfvars
+
+# postman newman env. variables
+libs/multi-cart-iac-tests/src/env-variables/*.json
