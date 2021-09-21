@@ -1,5 +1,9 @@
 {
-  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+  "extends": [
+    "plugin:@nrwl/nx/react",
+    "../../.eslintrc.json",
+    "plugin:react-hooks/recommended"
+  ],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -7,7 +11,10 @@
       "parserOptions": {
         "project": ["apps/rate-test-karlgolka-fe/tsconfig(.*)?.json"]
       },
-      "rules": {}
+      "rules": {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
+      }
     },
     {
       "files": ["*.ts", "*.tsx"],

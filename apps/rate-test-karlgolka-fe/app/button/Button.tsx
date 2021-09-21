@@ -5,6 +5,8 @@ import styles from './Button.module.scss';
 /* eslint-disable-next-line */
 export interface ButtonProps {
   children?: string | React.ReactChildren
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [x: string]: any // all other props
 }
 
 export function Button({ children, ...props }: ButtonProps) {
