@@ -1,34 +1,23 @@
 {
   "implicitDependencies": {
     "workspace.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": {
-    "defaultBase": "master"
-  },
+  "affected": { "defaultBase": "master" },
   "npmScope": "rate-test-karlgolka",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
-      }
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
     }
   },
   "projects": {
-    "rate-test-karlgolka-fe": {
-      "tags": []
-    },
-    "rate-test-karlgolka-fe-e2e": {
-      "tags": [],
-      "implicitDependencies": ["rate-test-karlgolka-fe"]
-    }
+    "rate-test-karlgolka-fe": { "tags": [] },
+    "react-data-access": { "tags": [] },
+    "iac": { "tags": [] }
   }
 }

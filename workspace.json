@@ -1,21 +1,10 @@
 {
   "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
+  "cli": { "defaultCollection": "@nrwl/next" },
   "defaultProject": "rate-test-karlgolka-fe",
   "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "style": "scss",
-        "linter": "eslint"
-      }
-    }
+    "@nrwl/react": { "application": { "babel": true } },
+    "@nrwl/next": { "application": { "style": "scss", "linter": "eslint" } }
   },
   "projects": {
     "rate-test-karlgolka-fe": {
@@ -30,9 +19,7 @@
             "root": "apps/rate-test-karlgolka-fe",
             "outputPath": "dist/apps/rate-test-karlgolka-fe"
           },
-          "configurations": {
-            "production": {}
-          }
+          "configurations": { "production": {} }
         },
         "serve": {
           "executor": "@nrwl/next:server",
@@ -71,29 +58,27 @@
         }
       }
     },
-    "rate-test-karlgolka-fe-e2e": {
-      "root": "apps/rate-test-karlgolka-fe-e2e",
-      "sourceRoot": "apps/rate-test-karlgolka-fe-e2e/src",
-      "projectType": "application",
+    "react-data-access": {
+      "root": "libs/react-data-access",
+      "sourceRoot": "libs/react-data-access/src",
+      "projectType": "library",
       "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/rate-test-karlgolka-fe-e2e/cypress.json",
-            "tsConfig": "apps/rate-test-karlgolka-fe-e2e/tsconfig.e2e.json",
-            "devServerTarget": "rate-test-karlgolka-fe:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "rate-test-karlgolka-fe:serve:production"
-            }
-          }
-        },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/rate-test-karlgolka-fe-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": ["libs/react-data-access/**/*.{ts,tsx,js,jsx}"]
           }
+        }
+      }
+    },
+    "iac": {
+      "root": "libs/iac",
+      "sourceRoot": "libs/iac/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/iac/**/*.ts"] }
         }
       }
     }

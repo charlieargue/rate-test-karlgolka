@@ -1,0 +1,44 @@
+## ------------------------------
+#  GAME
+## ------------------------------
+type Game  {
+  id: ID!
+  cards: [Card!]!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Card {
+  id: ID!
+  name: String!
+  isTurned: Boolean!
+  createdAt: String!
+  updatedAt: String!
+}
+
+
+
+## ------------------------------
+#  INPUTS / OUTPUTS
+## ------------------------------
+
+
+## ------------------------------
+#  QUERIES
+## ------------------------------
+type Query  {
+}
+
+## ------------------------------
+#  MUTATIONS
+## ------------------------------
+type Mutation {
+  newGame: Game!
+  updateGame(
+    gameId: ID!
+    cardId: ID!
+    isTurned: Boolean!
+  ): Game!
+
+  
+}
