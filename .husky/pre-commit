@@ -1,0 +1,15 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+## ------------------------------
+#  TERRAFORM (validate & format)
+## ------------------------------
+terraform -chdir=libs/iac validate
+terraform -chdir=libs/iac fmt
+
+## ------------------------------
+#  LINT
+## ------------------------------
+yarn affected:lint
+
+

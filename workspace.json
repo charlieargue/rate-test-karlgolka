@@ -76,10 +76,7 @@
       "sourceRoot": "libs/iac/src",
       "projectType": "library",
       "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["libs/iac/**/*.ts"] }
-        }
+        
       }
     }
   }

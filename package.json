@@ -14,7 +14,7 @@
     "affected:build": "nx affected:build",
     "affected:e2e": "nx affected:e2e",
     "affected:test": "nx affected:test",
-    "affected:lint": "nx affected:lint",
+    "affected:lint": "nx affected:lint --exclude=iac",
     "affected:dep-graph": "nx affected:dep-graph",
     "affected": "nx affected",
     "format": "nx format:write",
@@ -23,7 +23,11 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "precommit": "eslint src/**/*.js",
+    "prepare": "husky install",
+    "postinstall": "husky install",
+    "generate": "nx run react-data-access:generate"
   },
   "private": true,
   "dependencies": {
@@ -67,6 +71,7 @@
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
+    "husky": "^7.0.2",
     "jest": "26.2.2",
     "node-sass": "4.14.1",
     "prettier": "2.2.1",
