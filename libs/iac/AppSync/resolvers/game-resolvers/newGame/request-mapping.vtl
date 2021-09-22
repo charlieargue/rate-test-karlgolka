@@ -1,7 +1,7 @@
 #set($freshGameId = $util.autoId() )
 #set($nowTime = $util.time.nowISO8601() )
 
-## given an array of "sprite names" 
+## given an array of UNIQUE "sprite names" 
 #set($arrSpriteNames = ["spade-a", "spade-2", "spade-3", "spade-4", "spade-5", "spade-6", "spade-7",
 "spade-8", "spade-9", "spade-10", "spade-j", "spade-q", "spade-k", "club-a", "club-2", "club-3",
 "club-4", "club-5", "club-6", "club-7", "club-8", "club-9", "club-10", "club-j", "club-q", "club-k",
@@ -11,12 +11,11 @@
 "heart-q", "heart-k"])
 #set($arrLength = $arrSpriteNames.size())
 
-
-## TRY: just grab a random one, and USE IT and REMOVE IT!
-## #set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
-## #set($rndIndex=$mathTool.random(0,$arrLength - 1)) 
-
-## #set($dummy = $linkedWIARRAY.remove("DEF-345"))
+## grab a random one, USE IT, and REMOVE IT!
+#set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
+#set($rndIndex=$mathTool.random(0, $arrLength - 1)) 
+#set($sprite = $arrSpriteNames.get(0))
+#set($dummy = $arrSpriteNames.remove($sprite))
 
 
 ## - ok, so got 12 unique "pairs"
