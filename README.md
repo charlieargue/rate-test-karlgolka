@@ -16,6 +16,10 @@ Take-home test by [Karl Golka](https://karlgolka.com) / contact@karlgolka.com do
 
 
 
+Upon winning (**confetti**):
+
+![image-20210922063828334](/Users/karlgolka/PROJECTS/FYI/_typora_images/img-20210922063828334.png)
+
 
 
 ## 🚥 Status
