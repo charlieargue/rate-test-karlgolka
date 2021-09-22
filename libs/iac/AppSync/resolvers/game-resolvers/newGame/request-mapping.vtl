@@ -28,7 +28,7 @@ $arrSpriteNames.set($rndIndex, "---") ## SET it to null
       "createdAt" : $nowTime,
       "updatedAt" : $nowTime
     } )
-    $util.qr($cards.add($card))
+    $util.qr($cards.add($util.toJson($card)))
 #end
 ## $util.validate(false, $util.toJson($cards) )
 ## - now can "shuffle" them
