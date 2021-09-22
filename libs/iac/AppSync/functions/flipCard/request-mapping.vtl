@@ -2,8 +2,6 @@
 ## FLIP / UPDATE GAME CARD
 ## -------------------------------------
 
-$utils.error($util.toJson($ctx.prev.result))
-
 ## get INDEX of this card 
 #foreach ($item in $ctx.prev.result.cards)
     #if($item.id == "$ctx.args.cardId")
@@ -12,7 +10,6 @@ $utils.error($util.toJson($ctx.prev.result))
     #end
 #end
 #set ($idxZeroBased = $idx - 1)
-## YES: $utils.error('💎 dupa')
 {
     "version" : "2017-02-28",
     "operation" : "UpdateItem",
