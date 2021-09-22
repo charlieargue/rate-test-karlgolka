@@ -1,6 +1,7 @@
 {
     "tslint.autoFixOnSave": true,
     "files.exclude": {
+        "**/.terraform": true,
         "**/dist": true
     }
 }
