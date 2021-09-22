@@ -23,14 +23,12 @@ export function GameCard({ card, gameId, havePairTurned }: CardProps) {
     return `-${x}px -${y}px`
   }
 
-  // 🔴 ALERT: TODO: needs useReducer just for the CARD (in addition to useAsyncReducer)
-  console.log("🚀 ~ havePairTurned()", havePairTurned())
-
+  
   // -------------------
   const handleClick = async (e) => {
     // TODO: error handling + toast
     const newSetting = !card.isTurned
-    if (havePairTurned()) { return }
+    if (havePairTurned() || card.isMatched) { return }
     // TODO: need real assume success here!
     await flipCard({ gameId, cardId: card.id, isTurned: newSetting, isMatched: false })
   }

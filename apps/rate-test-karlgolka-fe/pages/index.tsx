@@ -1,5 +1,5 @@
 import React from 'react'
-import GameContainer from '../app/game-container/GameContainer'
+import GameContainer from '../components/game-container/GameContainer'
 import { createUrqlClient } from '@rate-test-karlgolka/react-data-access'
 import { NextPage } from 'next'
 import { withUrqlClient } from 'next-urql'
