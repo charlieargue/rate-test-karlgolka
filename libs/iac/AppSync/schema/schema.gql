@@ -43,5 +43,5 @@ type Mutation {
     cardId: ID!
     isTurned: Boolean!
     isMatched: Boolean!
-  ): Card!
+  ): Card
 }
