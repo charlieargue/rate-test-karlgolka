@@ -30,7 +30,7 @@ export function GameContainer(props: GameContainerProps) {
     content = (
       <div className={styles.game}>
         {data.game.cards.length && data.game.cards.map((card, idx) => (
-          <GameCard key={idx} card={card} />
+          <GameCard key={idx} card={card} gameId={data.game.id} />
         ))}
       </div>
     )

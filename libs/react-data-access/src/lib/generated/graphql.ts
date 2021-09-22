@@ -37,8 +37,16 @@ export type Game = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  flipCard: Card;
   newGame: Game;
   updateGame: Game;
+};
+
+
+export type MutationFlipCardArgs = {
+  cardId: Scalars['ID'];
+  gameId: Scalars['ID'];
+  isTurned: Scalars['Boolean'];
 };
 
 
@@ -59,6 +67,15 @@ export type QueryGameArgs = {
 };
 
 export type CardFragmentFragment = { __typename?: 'Card', id: string, name: string, position: number, isTurned: boolean, isMatched: boolean, createdAt: string, updatedAt: string };
+
+export type FlipCardMutationVariables = Exact<{
+  gameId: Scalars['ID'];
+  cardId: Scalars['ID'];
+  isTurned: Scalars['Boolean'];
+}>;
+
+
+export type FlipCardMutation = { __typename?: 'Mutation', flipCard: { __typename?: 'Card', id: string, name: string, position: number, isTurned: boolean, isMatched: boolean, createdAt: string, updatedAt: string } };
 
 export type NewGameMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -83,6 +100,17 @@ export const CardFragmentFragmentDoc = gql`
   updatedAt
 }
     `;
+export const FlipCardDocument = gql`
+    mutation FlipCard($gameId: ID!, $cardId: ID!, $isTurned: Boolean!) {
+  flipCard(gameId: $gameId, cardId: $cardId, isTurned: $isTurned) {
+    ...CardFragment
+  }
+}
+    ${CardFragmentFragmentDoc}`;
+
+export function useFlipCardMutation() {
+  return Urql.useMutation<FlipCardMutation, FlipCardMutationVariables>(FlipCardDocument);
+};
 export const NewGameDocument = gql`
     mutation NewGame {
   newGame {
@@ -226,6 +254,7 @@ export type GameResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  flipCard?: Resolver<ResolversTypes['Card'], ParentType, ContextType, RequireFields<MutationFlipCardArgs, 'cardId' | 'gameId' | 'isTurned'>>;
   newGame?: Resolver<ResolversTypes['Game'], ParentType, ContextType>;
   updateGame?: Resolver<ResolversTypes['Game'], ParentType, ContextType, RequireFields<MutationUpdateGameArgs, 'cardId' | 'gameId' | 'isTurned'>>;
 };

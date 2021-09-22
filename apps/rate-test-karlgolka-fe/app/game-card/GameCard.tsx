@@ -1,10 +1,11 @@
 import React from 'react'
-import { Card } from '@rate-test-karlgolka/react-data-access'
+import { Card, useFlipCardMutation } from '@rate-test-karlgolka/react-data-access'
 import styles from './GameCard.module.scss'
 
 /* eslint-disable-next-line */
 export interface CardProps {
   card: Card
+  gameId: string
 }
 
 interface SpriteMap {
@@ -14,13 +15,14 @@ interface SpriteMap {
 // ##################################################################################
 // # CARD
 // ##################################################################################
-export function GameCard({ card }: CardProps) {
+export function GameCard({ card, gameId }: CardProps) {
+  const [, flipCard] = useFlipCardMutation()
   const getBackgroundPosition = () => {
     const [x, y] = cardSpriteMap[card.name]
     return `-${x}px -${y}px`
   }
-  const handleClick = (e) => {
-    // setFlip(flip => !flip)
+  const handleClick = async (e) => {
+    await flipCard({ gameId, cardId: card.id, isTurned: !card.isTurned })
   }
 
   const faceUp = <div className={`${styles.cardGuts} ${styles.cardGutsCommon}`}
