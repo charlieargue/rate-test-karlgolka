@@ -10,25 +10,39 @@
 "diamond-8", "diamond-9", "diamond-10", "diamond-j", "diamond-q", "diamond-k", "heart-a", "heart-2",
 "heart-3", "heart-4", "heart-5", "heart-6", "heart-7", "heart-8", "heart-9", "heart-10", "heart-j",
 "heart-q", "heart-k"])
-
-## grab a random one, USE IT, and REMOVE IT!
 #set($arrLength = $arrSpriteNames.size() - 1)
-#set($rndIndex = $util.math.randomWithinRange(0, $arrLength))
-#set($sprite = $arrSpriteNames.get($rndIndex))
-$util.qr($arrSpriteNames.set($rndIndex, "---")) ## SET it to null
+
+
 
 
 ## - ok, so get 12 unique "pairs"
 #set($cards = [])
 #foreach($idx in [0..11])
-    #set($freshCardId = $util.autoId() )
-    #set( $card = {
+
+  ## each loop, 
+  ##    get a random sprite from OUR LIST
+  ##    replace it with "---" 
+
+  ## grab a random one, USE IT, and REMOVE IT!
+  #set($rndIndex = $util.math.randomWithinRange(0, $arrLength))
+  #set($sprite = $arrSpriteNames.get($rndIndex))
+  $util.qr($arrSpriteNames.set($rndIndex, "---")) ## SET it to null
+
+  ## add this to our cards array
+  #set($freshCardId = $util.autoId() )
+  #set($card = {
       "id": $freshCardId,
       "name": $sprite,
       "createdAt" : $nowTime,
       "updatedAt" : $nowTime
-    } )
-    $util.qr($cards.add($card))
+    })
+  $util.qr($cards.add($card))
+
+  ##    run another loop FILTERING/creating a new array that is filtered to REMOVE all the "---"
+  ##    and make that OUR LIST
+  ##    and update $arrLength
+
+    
 #end
 
 
