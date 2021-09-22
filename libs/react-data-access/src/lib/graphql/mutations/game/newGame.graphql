@@ -1,0 +1,16 @@
+mutation NewGame {
+  newGame {
+    id
+    cards {
+        id
+        name
+        position
+        isTurned
+        isMatched
+        createdAt
+        updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}

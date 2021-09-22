@@ -1,0 +1,15 @@
+schema: 'libs/iac/AppSync/schema/schema.gql'
+documents: 'libs/react-data-access/src/lib/graphql/**/*.graphql'
+overwrite: true
+generates:
+  # ---------------------------------------
+  libs/react-data-access/src/lib/generated/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-urql'
+      - 'typescript-resolvers'
+    config:
+      withHooks: true
+      withComponent: false
+      withHOC: false

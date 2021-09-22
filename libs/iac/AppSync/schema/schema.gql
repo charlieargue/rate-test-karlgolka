@@ -29,6 +29,8 @@ type Card {
 #  QUERIES
 ## ------------------------------
 type Query  {
+  # need this test query or codegen craps out
+  test: Boolean
 }
 
 ## ------------------------------

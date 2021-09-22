@@ -63,10 +63,14 @@
       "sourceRoot": "libs/react-data-access/src",
       "projectType": "library",
       "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
+        "generate": {
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
-            "lintFilePatterns": ["libs/react-data-access/**/*.{ts,tsx,js,jsx}"]
+            "commands": [
+              {
+                "command": "npx graphql-codegen --config libs/react-data-access/codegen.yml"
+              }
+            ]
           }
         }
       }
