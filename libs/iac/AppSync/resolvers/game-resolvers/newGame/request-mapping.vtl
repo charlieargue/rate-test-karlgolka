@@ -31,7 +31,6 @@
     "id" : { "S" : "$freshGameId" }
   },
   "attributeValues" : {
-    "name" : { "S" : "Cart $friendlyTime" },
     "cards" : $ util.dynamodb.toDynamoDBJson([]),
     "createdAt" : $ util.dynamodb.toDynamoDBJson($ nowTime),
     "updatedAt" : $ util.dynamodb.toDynamoDBJson($ nowTime)
