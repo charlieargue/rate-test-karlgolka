@@ -12,9 +12,6 @@
 "heart-q", "heart-k"])
 #set($arrLength = $arrSpriteNames.size() - 1)
 
-
-
-
 ## - ok, so get 12 unique "pairs"
 #set($cards = [])
 #foreach($idx in [0..11])
@@ -39,23 +36,23 @@
   $util.qr($cards.add($card))
 
   ##    run another loop FILTERING/creating a new array that is filtered to REMOVE all the "---"
-  #set($arrSpriteNames = [])
+  #set($arrNew = [])
   #set($range = [0..$arrLength])
   #foreach($i in $range)    
     #if($arrSpriteNames.get($i) != "---")
-        $util.qr($arrSpriteNames.add($arrSpriteNames.get($i)))
+        $util.qr($arrNew.add($arrSpriteNames.get($i)))
     #end
   #end  
 
   ##    and make that OUR LIST
+  #set($arrSpriteNames = $arrNew)
+
   ##    and update $arrLength
   #set($arrLength = $arrSpriteNames.size() - 1)
     
 #end
 
 
-## - now can "shuffle" them
-## - and now iterate over them and:
 ##   - insert into DB (with new guid generated for each), **TWICE!**
 
 {
