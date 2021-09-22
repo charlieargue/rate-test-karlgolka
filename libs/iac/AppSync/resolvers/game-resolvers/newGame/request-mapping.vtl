@@ -1,3 +1,4 @@
+## NOTE: $math is BLOCKED by AppSync, must use $util.math...
 #set($freshGameId = $util.autoId() )
 #set($nowTime = $util.time.nowISO8601() )
 
@@ -11,7 +12,6 @@
 "heart-q", "heart-k"])
 
 ## grab a random one, USE IT, and REMOVE IT!
-## NOTE: $math is BLOCKED by AppSync, must use $util.math...
 #set($arrLength = $arrSpriteNames.size() - 1)
 #set($rndIndex = $util.math.randomWithinRange(0, $arrLength))
 #set($sprite = $arrSpriteNames.get($rndIndex))
@@ -19,17 +19,17 @@ $arrSpriteNames.set($rndIndex, "---") ## SET it to null
 
 
 ## - ok, so get 12 unique "pairs"
-#set($cards = [])
-#foreach($idx in [0..11])
-    #set($freshCardId = $util.autoId() )
-    #set( $card = {
-      "id": $freshCardId,
-      "name": $sprite,
-      "createdAt" : $nowTime,
-      "updatedAt" : $nowTime
-    } )
-    $util.qr($cards.add($card))
-#end
+## #set($cards = [])
+## #foreach($idx in [0..11])
+##     #set($freshCardId = $util.autoId() )
+##     #set( $card = {
+##       "id": $freshCardId,
+##       "name": $sprite,
+##       "createdAt" : $nowTime,
+##       "updatedAt" : $nowTime
+##     } )
+##     $util.qr($cards.add($card))
+## #end
 
 
 ## - now can "shuffle" them
