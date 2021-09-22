@@ -2,7 +2,7 @@
 
 * Take-home test by [Karl Golka](https://karlgolka.com) / contact@karlgolka.com done on `Sep 21-22, 2021`
 * ✅ URL: **https://rate-test-karlgolka.vercel.app/** 
-* 🎥 Demo/Loom: 
+* 🎥 Demo/Loom: https://www.loom.com/share/87b5a367e26a48f9ba4e960cb73b7ada
 
 
 
