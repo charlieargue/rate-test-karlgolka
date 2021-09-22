@@ -9,8 +9,6 @@ import { useNewGameMutation } from '@rate-test-karlgolka/react-data-access'
 /* eslint-disable-next-line */
 export interface NewGameButtonProps { }
 
-// TODO: how to keep from firing twice (upon new game click) without too much complication???
-
 // ##################################################################################
 // # New Game BUTTON
 // ##################################################################################
