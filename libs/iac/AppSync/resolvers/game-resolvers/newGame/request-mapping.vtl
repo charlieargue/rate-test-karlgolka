@@ -10,12 +10,10 @@
 "heart-3", "heart-4", "heart-5", "heart-6", "heart-7", "heart-8", "heart-9", "heart-10", "heart-j",
 "heart-q", "heart-k"])
 
-#set($arrLength = $arrSpriteNames.size() - 1)
-
 ## grab a random one, USE IT, and REMOVE IT!
-#set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
-## #set($rndIndex = $mathTool.random(0, $arrLength))
-#set($rndIndex = 2)
+#set($arrLength = $arrSpriteNames.size() - 1)
+#set($random = $math.random(0,$arrLength))
+#set($rndIndex = $math.floor($random)​)
 #set($sprite = $arrSpriteNames.get($rndIndex))
 $arrSpriteNames.set($rndIndex, "---") ## SET it to null
 $util.validate(false, $util.toJson($arrSpriteNames) )
