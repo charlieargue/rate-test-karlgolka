@@ -6,24 +6,91 @@ import styles from './Card.module.scss';
 export interface CardProps { }
 
 interface SpriteMap {
-  [key: string]: number[][]
+  [key: string]: number[]
 }
 
 // aka `a, 2, 3, 4, 5, 6, 7, 8, 9, 10, j, q, k` *  `spade, diamonds, hearts, clubs`
 const cardSpriteMap: SpriteMap = {
-  "spade-a": [[0, 0], [100, 150]],
-  // "hearts-7": [[0, 0], [100, 150]],
+  // SPADE
+  "spade-a": [0, 0],
+  "spade-2": [62, 0],
+  "spade-3": [123, 0],
+  "spade-4": [185, 0],
+  "spade-5": [246, 0],
+  "spade-6": [308, 0],
+  "spade-7": [369, 0],
+  "spade-8": [431, 0],
+  "spade-9": [492, 0],
+  "spade-10": [554, 0],
+  "spade-j": [615, 0],
+  "spade-q": [677, 0],
+  "spade-k": [738, 0],
+  // CLUB
+  "club-a": [0, 81],
+  "club-2": [62, 81],
+  "club-3": [123, 81],
+  "club-4": [185, 81],
+  "club-5": [246, 81],
+  "club-6": [308, 81],
+  "club-7": [369, 81],
+  "club-8": [431, 81],
+  "club-9": [492, 81],
+  "club-10": [554, 81],
+  "club-j": [615, 81],
+  "club-q": [677, 81],
+  "club-k": [738, 81],
+  // DIAMOND
+  "diamond-a": [0, 162],
+  "diamond-2": [62, 162],
+  "diamond-3": [123, 162],
+  "diamond-4": [185, 162],
+  "diamond-5": [246, 162],
+  "diamond-6": [308, 162],
+  "diamond-7": [369, 162],
+  "diamond-8": [431, 162],
+  "diamond-9": [492, 162],
+  "diamond-10": [554, 162],
+  "diamond-j": [615, 162],
+  "diamond-q": [677, 162],
+  "diamond-k": [738, 162],
+  // HEART
+  "heart-a": [0, 243],
+  "heart-2": [62, 243],
+  "heart-3": [123, 243],
+  "heart-4": [185, 243],
+  "heart-5": [246, 243],
+  "heart-6": [308, 243],
+  "heart-7": [369, 243],
+  "heart-8": [431, 243],
+  "heart-9": [492, 243],
+  "heart-10": [554, 243],
+  "heart-j": [615, 243],
+  "heart-q": [677, 243],
+  "heart-k": [738, 243],
 }
 // VIP: cards that match must be replaced by a placeholder image, but keep their spots "intact!" 
 // ... otherwise not a very good memory game!
 
 export function Card(props: CardProps) {
-  return (
-    <div className={styles.card} style={{
+  const getBackgroundPosition = () => {
+    const key = Object.keys(cardSpriteMap)[51]
+    const [x, y] = cardSpriteMap[key]
+    return `-${x}px -${y}px`
+  }
+  const [flip, setFlip] = React.useState(false)
+  const handleClick = (e) => {
+    setFlip(flip => !flip)
+  }
 
-    }}>
-      <div className={styles.cardGuts}>
-      </div>
+  return (
+    <div className={styles.card} onClick={handleClick}>
+      {flip ? (
+        <div className={`${styles.cardGuts} ${styles.cardGutsCommon}`}
+          style={{
+            backgroundPosition: getBackgroundPosition()
+          }}>
+        </div>
+      ) : (<div className={`${styles.placeholder} ${styles.cardGutsCommon}`}><span role='img' aria-label='emoji'>👆</span></div>)}
     </div>
   );
 }

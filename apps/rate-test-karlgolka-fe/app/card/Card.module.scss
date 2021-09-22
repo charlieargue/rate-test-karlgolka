@@ -5,10 +5,16 @@
   border-radius: 12px;
   border: 1px solid rgba(209, 213, 219, 0.3);
   margin: 0 16px 16px 0;
-  padding: 8px;
+  padding: 18px 8px 4px;
   text-align: -webkit-center;
   width: calc(100% / 3);
-  height: calc(82px * 1.5);
+  height: calc(82px * 1.75);
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.065),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.093),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.115),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.137),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.165),
+    100px 100px 80px rgba(0, 0, 0, 0.23);
 
   /* Medium devices (landscape tablets, 768px and up) */
   @media (min-width: 768px) {
@@ -23,11 +29,30 @@
 .card:hover {
   cursor: pointer;
 }
-.cardGuts {
+.cardGutsCommon {
   width: 62px;
-  background: url('/card-sprites.png') 0% 0% no-repeat;
   height: 82px;
   transform: scale(1.5);
   margin-top: 20px;
   margin-left: 18px;
+}
+.cardGuts {
+  background-repeat: no-repeat;
+  background-image: url('/card-sprites.png');
+}
+.placeholder {
+  border: 3px dotted #ccc;
+  border-radius: 16px;
+}
+
+.placeholder span {
+  display: inline-block;
+  transform: scale(2.5);
+  padding-top: 14px;
+  padding-left: 1px;
+  opacity: 0.3;
+}
+
+.placeholder:hover span {
+  opacity: 1;
 }
