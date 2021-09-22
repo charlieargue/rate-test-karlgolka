@@ -2,6 +2,9 @@
 
 Take-home test by [Karl Golka](https://karlgolka.com) / contact@karlgolka.com done on `Sep 21-22, 2021`.
 
+## ✅ URL:
+
+* **https://rate-test-karlgolka.vercel.app/** (Vercel URL)
 
 
 ## 💡 Lighthouse Results
@@ -19,12 +22,6 @@ Take-home test by [Karl Golka](https://karlgolka.com) / contact@karlgolka.com do
 Upon winning (**confetti**):
 
 ![image-20210922063828334](/img-20210922063828334.png)
-
-
-
-## 🚥 Status
-
-* ✅ URL: **https://rate-test-karlgolka.vercel.app/** (Vercel URL)
 
 
 
