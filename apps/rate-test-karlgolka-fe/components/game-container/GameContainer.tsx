@@ -52,17 +52,18 @@ export function GameContainer(props: GameContainerProps) {
   // -------------------
   const compareResultsAsync = React.useCallback(async () => {
     const turnedCards = data.game.cards.filter((card) => card.isTurned === true)
-    if (turnedCards.length === 2) {
-      // check if have match, and act accordingly
-      if (haveMatch()) {
-        // A) got a match, make them both isMatch=true + isTurned=false and thereby hide from board
-        await flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: true })
-        await flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: true })
-      } else {
-        // B) no match, so isTurned should be false for both (fire two flips!)
-        await flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: false })
-        await flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: false })
-      }
+    console.log("🚀 ~ turnedCards", turnedCards)
+    // check if have match, and act accordingly
+    if (haveMatch()) {
+      console.log('✅ HAVE MATCH')
+      // A) got a match, make them both isMatch=true + isTurned=false and thereby hide from board
+      await flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: true })
+      await flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: true })
+    } else {
+      console.log('🔴 nope, no match...')
+      // B) no match, so isTurned should be false for both (fire two flips!)
+      await flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: false })
+      await flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: false })
     }
   }, [data, flipCard, haveMatch])
 
