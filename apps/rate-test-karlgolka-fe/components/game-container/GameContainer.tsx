@@ -63,11 +63,10 @@ export function GameContainer(props: GameContainerProps) {
   }, [data, flipCard, haveMatch])
 
   // -------------------
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (havePairTurned()) {
-      compareResultsAsync()
+      setTimeout(compareResultsAsync, 1000)
     }
-
   }, [compareResultsAsync, havePairTurned])
 
   // TODO: clean-up and Kent Dobbs-ify all this
