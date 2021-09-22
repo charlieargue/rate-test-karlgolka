@@ -41,6 +41,7 @@ export function GameCard({ card, gameId, havePairTurned }: CardProps) {
 
   const faceDown = <div className={`${styles.placeholder} ${styles.cardGutsCommon}`}>
     <span role='img' aria-label='emoji'>👆</span>
+    {card.name}
   </div>
 
   return (
