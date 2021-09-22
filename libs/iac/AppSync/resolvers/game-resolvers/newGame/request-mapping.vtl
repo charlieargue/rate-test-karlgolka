@@ -17,15 +17,12 @@
 #set($rndIndex = $mathTool.random(0, $arrLength))
 #set($sprite = $arrSpriteNames.get($rndIndex))
 
-## $util.error($util.toJson($sprite))
-## $utils.error("got a sprite" + $sprite, $sprite, { "sprite": $util.dynamodb.toDynamoDBJson($sprite)}, [])
-#set($msg = "got a hmmm index: $rndIndex")
-$utils.error($msg, $sprite, {}, [])
+
+#set($dummy = $arrSpriteNames.remove($sprite)) ## will this work???
 
 
 
-## #set($dummy = $arrSpriteNames.remove($sprite)) ## will this work???
-## $util.validate(false, $util.toJson($sprite) )
+
 ## - ok, so got 12 unique "pairs"
 ## - now can "shuffle" them
 ## - and now iterate over them and:
