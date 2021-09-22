@@ -53,9 +53,9 @@
 #end
 
 ## TROUBLE-SHOOTING
-$util.validate(false, $util.toJson($cards) )
+## $util.validate(false, $util.toJson($cards) )
 
-## insert into DB (with new guid generated for each), **TWICE!**
+## 🔥 insert into DB (with new guid generated for each), **TWICE!**
 
 {
   "version" : "2018-05-29",
@@ -64,7 +64,7 @@ $util.validate(false, $util.toJson($cards) )
     "id" : { "S" : "$freshGameId" }
   },
   "attributeValues" : {
-    "cards" : $util.dynamodb.toDynamoDBJson([]),
+    "cards" : $util.dynamodb.toDynamoDBJson($cards),
     "createdAt" : $util.dynamodb.toDynamoDBJson($nowTime),
     "updatedAt" : $util.dynamodb.toDynamoDBJson($nowTime)
   }
