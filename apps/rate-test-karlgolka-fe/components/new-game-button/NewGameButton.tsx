@@ -31,8 +31,8 @@ export function NewGameButton(props: NewGameButtonProps) {
   const handleClick = (e) => {
     if (router.query.game) {
       confirmAlert({
-        title: 'Confirm to submit',
-        message: 'Are you sure? You will navigate away from your current game...',
+        title: 'Are you sure? ',
+        message: 'You will navigate away from your current game...',
         buttons: [
           {
             label: 'Yes',
