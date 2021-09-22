@@ -27,13 +27,25 @@
 
   ## add this to our cards array
   #set($freshCardId = $util.autoId() )
-  #set($card = {
+  #set($freshCardId2 = $util.autoId() )
+  #set($card1 = {
       "id": $freshCardId,
       "name": $sprite,
+      "isTurned": false,
+      "isMatched": false,
       "createdAt" : $nowTime,
       "updatedAt" : $nowTime
     })
-  $util.qr($cards.add($card))
+  #set($card2 = {
+      "id": $freshCardId,
+      "name": $sprite,
+      "isTurned": false,
+      "isMatched": false,
+      "createdAt" : $nowTime,
+      "updatedAt" : $nowTime
+    })
+  $util.qr($cards.add($card1))
+  $util.qr($cards.add($card2))
 
   ## run another loop FILTERING/creating a new array that is filtered to REMOVE all the "---"
   #set($arrNew = [])
@@ -55,7 +67,6 @@
 ## TROUBLE-SHOOTING
 ## $util.validate(false, $util.toJson($cards) )
 
-## 🔥 insert into DB (with new guid generated for each), **TWICE!**
 
 {
   "version" : "2018-05-29",
