@@ -37,6 +37,7 @@ type Query  {
 ## ------------------------------
 type Mutation {
   newGame: Game!
+  # TODO: switch to updateCard(...cardsArray) that way don't need multiple flipCard() calls after comparing
   flipCard(
     gameId: ID!
     cardId: ID!
