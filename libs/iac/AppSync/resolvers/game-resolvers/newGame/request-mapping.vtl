@@ -35,7 +35,7 @@
     })
   $util.qr($cards.add($card))
 
-  ##    run another loop FILTERING/creating a new array that is filtered to REMOVE all the "---"
+  ## run another loop FILTERING/creating a new array that is filtered to REMOVE all the "---"
   #set($arrNew = [])
   #set($range = [0..$arrLength])
   #foreach($i in $range)    
@@ -44,16 +44,18 @@
     #end
   #end  
 
-  ##    and make that OUR LIST
+  ## and make that OUR LIST
   #set($arrSpriteNames = $arrNew)
 
-  ##    and update $arrLength
+  ## and update $arrLength
   #set($arrLength = $arrSpriteNames.size() - 1)
     
 #end
 
+## TROUBLE-SHOOTING
+$util.validate(false, $util.toJson($cards) )
 
-##   - insert into DB (with new guid generated for each), **TWICE!**
+## insert into DB (with new guid generated for each), **TWICE!**
 
 {
   "version" : "2018-05-29",
