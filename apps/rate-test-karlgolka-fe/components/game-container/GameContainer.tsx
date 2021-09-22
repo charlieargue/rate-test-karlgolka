@@ -63,7 +63,7 @@ export function GameContainer(props: GameContainerProps) {
   }, [data, flipCard, haveMatch])
 
   // -------------------
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (havePairTurned()) {
       compareResultsAsync()
     }
