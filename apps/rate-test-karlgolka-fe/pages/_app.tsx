@@ -1,10 +1,7 @@
-import React from 'react';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import React from 'react';
 import './styles.css';
-import Logo from '../app/logo/Logo';
-import Button from '../app/button/Button';
-import NewGameButton from '../app/new-game-button/NewGameButton';
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -13,13 +10,7 @@ function App({ Component, pageProps }: AppProps) {
         <title>Memory Game!</title>
       </Head>
       <div className="app">
-        <header>
-          <Logo />
-          <NewGameButton />
-        </header>
-        <main>
-          <Component {...pageProps} />
-        </main>
+        <Component {...pageProps} />
       </div>
     </>
   );
