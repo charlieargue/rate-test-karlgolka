@@ -87,21 +87,24 @@ export function GameContainer(props: GameContainerProps) {
     // NOTE: this happens when you click really fast and play as quick as you can (on my touch screen, for eg.)
     // NOTE: so every time data changes, we'll shore up any dirty data, sigh
     // find any straggler cards (no matching pairs on game board)
-    if (!isComparing) {
-      const stragglers = []
-      data?.game?.cards?.forEach((card) => {
-        if (!data.game.cards.find((c) => c.id !== card.id && c.name === card.name)) {
-          console.log('🧹 SWEEPING UP any dirty data...', card)
-          stragglers.push(card)
-        }
-      })
-      console.log("🚀 ~ stragglers", stragglers)
-      // and remove them! NOTE: this would only happen when a card is flipped up
-      // what does that mean? you mean FLIP THEM again, right?
-      for (const straggler of stragglers) {
-        flipCard({ gameId: data.game.id, cardId: straggler.id, isTurned: false, isMatched: true })
+    // if (!isComparing) {
+    const stragglers = []
+    data?.game?.cards?.forEach((card) => {
+      const otherPair = data.game.cards.find((c) => c.id !== card.id && c.name === card.name)
+      console.log("🧹  ~ otherPair", otherPair)
+      if (!otherPair) {
+        console.log('🧹 SWEEPING UP any dirty data...', card)
+        stragglers.push(card)
       }
+    })
+    if (stragglers.length) { console.log("🧹 SWEEPING stragglers", stragglers) }
+
+    // and remove them! NOTE: this would only happen when a card is flipped up
+    // what does that mean? you mean FLIP THEM again, right?
+    for (const straggler of stragglers) {
+      flipCard({ gameId: data.game.id, cardId: straggler.id, isTurned: false, isMatched: true })
     }
+    // }
   }, [data, flipCard, isComparing])
 
   let content
