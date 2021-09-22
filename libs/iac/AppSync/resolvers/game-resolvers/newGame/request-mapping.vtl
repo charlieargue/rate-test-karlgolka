@@ -15,10 +15,10 @@
 ## grab a random one, USE IT, and REMOVE IT!
 #set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
 #set($rndIndex = $mathTool.random(0, $arrLength))
+#set($sprite = $arrSpriteNames.get($rndIndex))
 
 
-## #set($rndIndex = $mathTool.random(0, $arrLength - 1)) # DIDNT WORK
-## #set($sprite = $arrSpriteNames.get(0))
+
 ## #set($dummy = $arrSpriteNames.remove($sprite))
 
 
