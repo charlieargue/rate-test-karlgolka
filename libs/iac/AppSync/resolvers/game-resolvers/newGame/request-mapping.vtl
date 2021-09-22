@@ -14,7 +14,7 @@
 
 ## TRY: just grab a random one, and USE IT and REMOVE IT!
 ## #set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
-## #set($rndIndex=$mathTool.random(1,20)) 
+## #set($rndIndex=$mathTool.random(0,$arrLength - 1)) 
 
 ## #set($dummy = $linkedWIARRAY.remove("DEF-345"))
 
@@ -31,8 +31,8 @@
     "id" : { "S" : "$freshGameId" }
   },
   "attributeValues" : {
-    "cards" : $ util.dynamodb.toDynamoDBJson([]),
-    "createdAt" : $ util.dynamodb.toDynamoDBJson($ nowTime),
-    "updatedAt" : $ util.dynamodb.toDynamoDBJson($ nowTime)
+    "cards" : $util.dynamodb.toDynamoDBJson([]),
+    "createdAt" : $util.dynamodb.toDynamoDBJson($nowTime),
+    "updatedAt" : $util.dynamodb.toDynamoDBJson($nowTime)
   }
 }
