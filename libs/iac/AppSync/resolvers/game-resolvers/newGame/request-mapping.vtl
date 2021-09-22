@@ -14,7 +14,8 @@
 
 ## grab a random one, USE IT, and REMOVE IT!
 #set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
-#set($rndIndex = $mathTool.random(0, $arrLength))
+## #set($rndIndex = $mathTool.random(0, $arrLength))
+#set($rndIndex = 2)
 #set($sprite = $arrSpriteNames.get($rndIndex))
 $arrSpriteNames.set($rndIndex, "---") ## SET it to null
 $util.validate(false, $util.toJson($arrSpriteNames) )
