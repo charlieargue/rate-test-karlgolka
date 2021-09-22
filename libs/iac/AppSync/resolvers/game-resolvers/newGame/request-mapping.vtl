@@ -28,10 +28,10 @@
   $util.qr($arrSpriteNames.set($rndIndex, "---")) ## SET it to null
 
   ## add this to our cards array
-  #set($freshCardId = $util.autoId() )
+  #set($freshCardId1 = $util.autoId() )
   #set($freshCardId2 = $util.autoId() )
   #set($card1 = {
-      "id": $freshCardId,
+      "id": $freshCardId1,
       "name": $sprite,
       "isTurned": false,
       "isMatched": false,
@@ -40,7 +40,7 @@
       "updatedAt" : $nowTime
     })
   #set($card2 = {
-      "id": $freshCardId,
+      "id": $freshCardId2,
       "name": $sprite,
       "isTurned": false,
       "isMatched": false,
