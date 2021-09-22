@@ -65,7 +65,8 @@ export function GameContainer(props: GameContainerProps) {
   // -------------------
   React.useEffect(() => {
     if (havePairTurned()) {
-      setTimeout(compareResultsAsync, 200)
+      compareResultsAsync()
+      // setTimeout(compareResultsAsync, 200)
     }
   }, [compareResultsAsync, havePairTurned])
 
