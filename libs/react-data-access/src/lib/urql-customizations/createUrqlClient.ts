@@ -25,7 +25,14 @@ const errorExchange: Exchange = ({ forward }) => ops$ => {
 export const createUrqlClient = (ssrExchange: any) => ({
 
     url: NEXT_PUBLIC_API_URL,
-    fetchOptions: () => ({ headers: { "x-api-key": NEXT_PUBLIC_API_KEY } }),
+    fetchOptions: () => ({
+        headers: {
+            "x-api-key": NEXT_PUBLIC_API_KEY,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        }
+    }),
     exchanges: [
         devtoolsExchange,
         cache,

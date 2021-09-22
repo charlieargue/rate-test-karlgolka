@@ -1,5 +1,5 @@
-mutation FlipCard($gameId: ID!, $cardId: ID!, $isTurned: Boolean!) {
-  flipCard(gameId: $gameId, cardId: $cardId, isTurned: $isTurned) {
+mutation FlipCard($gameId: ID!, $cardId: ID!, $isTurned: Boolean!, $isMatched: Boolean!) {
+  flipCard(gameId: $gameId, cardId: $cardId, isTurned: $isTurned, isMatched: $isMatched) {
         ...CardFragment
   }
 }

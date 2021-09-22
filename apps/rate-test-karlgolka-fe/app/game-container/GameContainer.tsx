@@ -14,6 +14,7 @@ export interface GameContainerProps { }
 // # GAME CONTAINER
 // ##################################################################################
 export function GameContainer(props: GameContainerProps) {
+  const [isThinking, setIsThinking] = React.useState(false) // so can't flip other cards while comparing a flipped pair for a match
   const router = useRouter()
   const [{ data, fetching }] = useGetGameQuery({
     variables: {
@@ -21,8 +22,20 @@ export function GameContainer(props: GameContainerProps) {
     },
     pause: !router.query.game
   })
-
-  console.log(router.query.game)
+  const havePairTurned = (): boolean => {
+    return data.game.cards.filter((card) => card.isTurned === true).length === 2
+  }
+  const haveMatch = (): boolean => {
+    // just checks first two items returned in this array, FYI
+    const turnedCards = data.game.cards.filter((card) => card.isTurned === true)
+    if (turnedCards.length >= 2) {
+      return turnedCards[0] === turnedCards[1]
+    }
+    return false
+  }
+  const findOtherFlippedCardId = (excludeId): string => {
+    return data.game.cards.find((card) => card.isTurned === true && card.id !== excludeId).id
+  }
 
   // TODO: clean-up and Kent Dobbs-ify all this
   let content
@@ -30,7 +43,15 @@ export function GameContainer(props: GameContainerProps) {
     content = (
       <div className={styles.game}>
         {data.game.cards.length && data.game.cards.map((card, idx) => (
-          <GameCard key={idx} card={card} gameId={data.game.id} />
+          <GameCard
+            key={idx}
+            card={card}
+            gameId={data.game.id}
+            isThinking={isThinking}
+            setIsThinking={setIsThinking}
+            havePairTurned={havePairTurned}
+            haveMatch={haveMatch} 
+            findOtherFlippedCardId={findOtherFlippedCardId}/>
         ))}
       </div>
     )

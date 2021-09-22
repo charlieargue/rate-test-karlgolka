@@ -46,6 +46,7 @@ export type Mutation = {
 export type MutationFlipCardArgs = {
   cardId: Scalars['ID'];
   gameId: Scalars['ID'];
+  isMatched: Scalars['Boolean'];
   isTurned: Scalars['Boolean'];
 };
 
@@ -72,6 +73,7 @@ export type FlipCardMutationVariables = Exact<{
   gameId: Scalars['ID'];
   cardId: Scalars['ID'];
   isTurned: Scalars['Boolean'];
+  isMatched: Scalars['Boolean'];
 }>;
 
 
@@ -101,8 +103,13 @@ export const CardFragmentFragmentDoc = gql`
 }
     `;
 export const FlipCardDocument = gql`
-    mutation FlipCard($gameId: ID!, $cardId: ID!, $isTurned: Boolean!) {
-  flipCard(gameId: $gameId, cardId: $cardId, isTurned: $isTurned) {
+    mutation FlipCard($gameId: ID!, $cardId: ID!, $isTurned: Boolean!, $isMatched: Boolean!) {
+  flipCard(
+    gameId: $gameId
+    cardId: $cardId
+    isTurned: $isTurned
+    isMatched: $isMatched
+  ) {
     ...CardFragment
   }
 }
@@ -254,7 +261,7 @@ export type GameResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  flipCard?: Resolver<ResolversTypes['Card'], ParentType, ContextType, RequireFields<MutationFlipCardArgs, 'cardId' | 'gameId' | 'isTurned'>>;
+  flipCard?: Resolver<ResolversTypes['Card'], ParentType, ContextType, RequireFields<MutationFlipCardArgs, 'cardId' | 'gameId' | 'isMatched' | 'isTurned'>>;
   newGame?: Resolver<ResolversTypes['Game'], ParentType, ContextType>;
   updateGame?: Resolver<ResolversTypes['Game'], ParentType, ContextType, RequireFields<MutationUpdateGameArgs, 'cardId' | 'gameId' | 'isTurned'>>;
 };

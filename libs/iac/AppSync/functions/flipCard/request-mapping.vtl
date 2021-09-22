@@ -17,12 +17,13 @@
         "id" : { "S": "$ctx.args.gameId"}
     },
     "update" : {
-        "expression" : "SET #cards[$idxZeroBased].isTurned = :isTurned",
+        "expression" : "SET #cards[$idxZeroBased].isTurned = :isTurned, #cards[$idxZeroBased].isMatched = :isMatched",
         "expressionNames": { 
             "#cards" : "cards"
         },
         "expressionValues": {
             ":isTurned" : { "B": "$ctx.args.isTurned" },
+            ":isMatched" : { "B": "$ctx.args.isMatched" },
         }
     },
 }
