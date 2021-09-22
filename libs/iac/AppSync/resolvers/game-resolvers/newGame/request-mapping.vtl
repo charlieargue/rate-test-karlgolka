@@ -39,9 +39,17 @@
   $util.qr($cards.add($card))
 
   ##    run another loop FILTERING/creating a new array that is filtered to REMOVE all the "---"
+  #set($arrSpriteNames = [])
+  #set($range = [0..$arrLength])
+  #foreach($i in $range)    
+    #if($arrSpriteNames.get($i) != "---")
+        $util.qr($arrSpriteNames.add($arrSpriteNames.get($i)))
+    #end
+  #end  
+
   ##    and make that OUR LIST
   ##    and update $arrLength
-
+  #set($arrLength = $arrSpriteNames.size() - 1)
     
 #end
 
