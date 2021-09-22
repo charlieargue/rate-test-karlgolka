@@ -42,7 +42,7 @@ $arrSpriteNames.set($rndIndex, "---") ## SET it to null
     "id" : { "S" : "$freshGameId" }
   },
   "attributeValues" : {
-    "cards" : $util.dynamodb.toJson($cards),
+    "cards" : $util.toJson($cards),
     "createdAt" : $util.dynamodb.toDynamoDBJson($nowTime),
     "updatedAt" : $util.dynamodb.toDynamoDBJson($nowTime)
   }
