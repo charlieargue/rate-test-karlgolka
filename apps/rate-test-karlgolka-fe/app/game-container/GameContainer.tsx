@@ -1,28 +1,36 @@
-import { useRouter } from 'next/router';
-import React from 'react';
-import Card from '../card/Card';
-import Loading from '../loading/loading';
-import Logo from '../logo/Logo';
-import NewGameButton from '../new-game-button/NewGameButton';
-import styles from './GameContainer.module.scss';
-import { Game } from '@rate-test-karlgolka/react-data-access'
+import { useGetGameQuery } from '@rate-test-karlgolka/react-data-access'
+import { useRouter } from 'next/router'
+import React from 'react'
+import GameCard from '../game-card/GameCard'
+import Loading from '../loading/loading'
+import Logo from '../logo/Logo'
+import NewGameButton from '../new-game-button/NewGameButton'
+import styles from './GameContainer.module.scss'
 
 /* eslint-disable-next-line */
 export interface GameContainerProps { }
 
+// ##################################################################################
+// # GAME CONTAINER
+// ##################################################################################
 export function GameContainer(props: GameContainerProps) {
   const router = useRouter()
-  const [game, setGame] = React.useState<Game | null>(null)
+  const [{ data, fetching }] = useGetGameQuery({
+    variables: {
+      id: router.query.game as string
+    },
+    pause: !router.query.game
+  })
 
-  console.log(router.query.game);
+  console.log(router.query.game)
 
-  // TODO: clean-up and Kent Dobbs all this
+  // TODO: clean-up and Kent Dobbs-ify all this
   let content
-  if (router.query.game && game?.id) {
+  if (router.query.game && !fetching && data?.game) {
     content = (
       <div className={styles.game}>
-        {game.cards.length && game.cards.map((a, idx) => (
-          <Card key={idx} />
+        {data.game.cards.length && data.game.cards.map((card, idx) => (
+          <GameCard key={idx} card={card} />
         ))}
       </div>
     )
@@ -34,7 +42,7 @@ export function GameContainer(props: GameContainerProps) {
   return (<>
     <header>
       <Logo />
-      <NewGameButton setGame={setGame} />
+      <NewGameButton />
     </header>
     <main>
       {content}
@@ -42,4 +50,4 @@ export function GameContainer(props: GameContainerProps) {
   </>)
 }
 
-export default GameContainer;
+export default GameContainer

@@ -50,36 +50,70 @@ export type MutationUpdateGameArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  test?: Maybe<Scalars['Boolean']>;
+  game: Game;
 };
+
+
+export type QueryGameArgs = {
+  id: Scalars['ID'];
+};
+
+export type CardFragmentFragment = { __typename?: 'Card', id: string, name: string, position: number, isTurned: boolean, isMatched: boolean, createdAt: string, updatedAt: string };
 
 export type NewGameMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type NewGameMutation = { __typename?: 'Mutation', newGame: { __typename?: 'Game', id: string, createdAt: string, updatedAt: string, cards: Array<{ __typename?: 'Card', id: string, name: string, position: number, isTurned: boolean, isMatched: boolean, createdAt: string, updatedAt: string }> } };
 
+export type GetGameQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
 
+
+export type GetGameQuery = { __typename?: 'Query', game: { __typename?: 'Game', id: string, createdAt: string, updatedAt: string, cards: Array<{ __typename?: 'Card', id: string, name: string, position: number, isTurned: boolean, isMatched: boolean, createdAt: string, updatedAt: string }> } };
+
+export const CardFragmentFragmentDoc = gql`
+    fragment CardFragment on Card {
+  id
+  name
+  position
+  isTurned
+  isMatched
+  createdAt
+  updatedAt
+}
+    `;
 export const NewGameDocument = gql`
     mutation NewGame {
   newGame {
     id
     cards {
-      id
-      name
-      position
-      isTurned
-      isMatched
-      createdAt
-      updatedAt
+      ...CardFragment
     }
     createdAt
     updatedAt
   }
 }
-    `;
+    ${CardFragmentFragmentDoc}`;
 
 export function useNewGameMutation() {
   return Urql.useMutation<NewGameMutation, NewGameMutationVariables>(NewGameDocument);
+};
+export const GetGameDocument = gql`
+    query GetGame($id: ID!) {
+  game(id: $id) {
+    id
+    cards {
+      ...CardFragment
+    }
+    createdAt
+    updatedAt
+  }
+}
+    ${CardFragmentFragmentDoc}`;
+
+export function useGetGameQuery(options: Omit<Urql.UseQueryArgs<GetGameQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<GetGameQuery>({ query: GetGameDocument, ...options });
 };
 
 
@@ -197,7 +231,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  test?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  game?: Resolver<ResolversTypes['Game'], ParentType, ContextType, RequireFields<QueryGameArgs, 'id'>>;
 };
 
 export type Resolvers<ContextType = any> = {

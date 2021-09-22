@@ -1,0 +1,9 @@
+fragment CardFragment on Card {
+    id
+    name
+    position
+    isTurned
+    isMatched
+    createdAt
+    updatedAt
+}

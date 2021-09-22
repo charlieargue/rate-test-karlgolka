@@ -7,17 +7,14 @@ import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import { useNewGameMutation } from '@rate-test-karlgolka/react-data-access'
 
 /* eslint-disable-next-line */
-export interface NewGameButtonProps {
-  setGame: React.Dispatch<React.SetStateAction<{
-    id: string
-    cards: unknown[]
-  }>>
-}
+export interface NewGameButtonProps { }
+
+// TODO: how to keep from firing twice (upon new game click) without too much complication???
 
 // ##################################################################################
 // # New Game BUTTON
 // ##################################################################################
-export function NewGameButton({ setGame }: NewGameButtonProps) {
+export function NewGameButton(props: NewGameButtonProps) {
   const [, newGame] = useNewGameMutation()
   const router = useRouter()
 
@@ -25,8 +22,6 @@ export function NewGameButton({ setGame }: NewGameButtonProps) {
   const newGameHandler = async () => {
     const { error, data } = await newGame()
     if (!error && data?.newGame?.id) {
-      console.log("🚀 ~ data", data)
-      setGame(data?.newGame)
       router.push(`?game=${data?.newGame?.id}`)
     } else if (error) {
       console.log(error)

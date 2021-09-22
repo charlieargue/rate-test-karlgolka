@@ -1,13 +1,48 @@
-import React from 'react';
-
-import styles from './Card.module.scss';
+import React from 'react'
+import { Card } from '@rate-test-karlgolka/react-data-access'
+import styles from './GameCard.module.scss'
 
 /* eslint-disable-next-line */
-export interface CardProps { }
+export interface CardProps {
+  card: Card
+}
 
 interface SpriteMap {
   [key: string]: number[]
 }
+
+// ##################################################################################
+// # CARD
+// ##################################################################################
+export function GameCard({ card }: CardProps) {
+  console.log("🚀 ~ card.name", card.name)
+  const getBackgroundPosition = () => {
+    const [x, y] = cardSpriteMap[card.name]
+    return `-${x}px -${y}px`
+  }
+  const [flip, setFlip] = React.useState(true)
+  const handleClick = (e) => {
+    setFlip(flip => !flip)
+  }
+
+  const faceUp = <div className={`${styles.cardGuts} ${styles.cardGutsCommon}`}
+    style={{
+      backgroundPosition: getBackgroundPosition()
+    }}>
+  </div>
+
+  const faceDown = <div className={`${styles.placeholder} ${styles.cardGutsCommon}`}>
+    <span role='img' aria-label='emoji'>👆</span>
+  </div>
+
+  return (
+    <div className={styles.card} onClick={handleClick}>
+      {flip ? faceUp : faceDown}
+    </div>
+  )
+}
+
+export default GameCard
 
 // aka `a, 2, 3, 4, 5, 6, 7, 8, 9, 10, j, q, k` *  `spade, diamonds, hearts, clubs`
 const cardSpriteMap: SpriteMap = {
@@ -68,31 +103,3 @@ const cardSpriteMap: SpriteMap = {
   "heart-q": [677, 243],
   "heart-k": [738, 243],
 }
-// VIP: cards that match must be replaced by a placeholder image, but keep their spots "intact!" 
-// ... otherwise not a very good memory game!
-
-export function Card(props: CardProps) {
-  const getBackgroundPosition = () => {
-    const key = Object.keys(cardSpriteMap)[51]
-    const [x, y] = cardSpriteMap[key]
-    return `-${x}px -${y}px`
-  }
-  const [flip, setFlip] = React.useState(false)
-  const handleClick = (e) => {
-    setFlip(flip => !flip)
-  }
-
-  return (
-    <div className={styles.card} onClick={handleClick}>
-      {flip ? (
-        <div className={`${styles.cardGuts} ${styles.cardGutsCommon}`}
-          style={{
-            backgroundPosition: getBackgroundPosition()
-          }}>
-        </div>
-      ) : (<div className={`${styles.placeholder} ${styles.cardGutsCommon}`}><span role='img' aria-label='emoji'>👆</span></div>)}
-    </div>
-  );
-}
-
-export default Card;
