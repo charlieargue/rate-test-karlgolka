@@ -16,6 +16,8 @@ export interface GameContainerProps { }
 // # GAME CONTAINER
 // ##################################################################################
 export function GameContainer(props: GameContainerProps) {
+  const [isComparing, setIsComparing] = React.useState(false)
+  console.log("🚀 ~ isComparing", isComparing)
   const size = useWindowSize()
   const [, flipCard] = useFlipCardMutation()
   const router = useRouter()
@@ -48,7 +50,9 @@ export function GameContainer(props: GameContainerProps) {
     return data.game.cards.find((card) => card.isTurned === true && card.id !== excludeId).id
   }
 
+  // -------------------
   const compareResultsAsync = React.useCallback(async () => {
+    setIsComparing(true)
     const turnedCards = data.game.cards.filter((card) => card.isTurned === true)
     // check if have match, and act accordingly
     if (haveMatch()) {
@@ -58,6 +62,7 @@ export function GameContainer(props: GameContainerProps) {
           flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: true }),
           flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: true })
         ])
+      setIsComparing(false)
     } else {
       // B) no match, so isTurned should be false for both (fire two flips!)
       await Promise
@@ -65,6 +70,7 @@ export function GameContainer(props: GameContainerProps) {
           flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: false }),
           flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: false })
         ])
+      setIsComparing(false)
     }
   }, [data, flipCard, haveMatch])
 
@@ -89,7 +95,8 @@ export function GameContainer(props: GameContainerProps) {
             key={idx}
             card={card}
             gameId={data.game.id}
-            havePairTurned={havePairTurned} />
+            havePairTurned={havePairTurned}
+            isComparing={isComparing} />
         ))}
       </div>
     )

@@ -8,6 +8,7 @@ export interface CardProps {
   card: Card
   gameId: string
   havePairTurned(): boolean
+  isComparing: boolean
 }
 
 interface SpriteMap {
@@ -17,7 +18,7 @@ interface SpriteMap {
 // ##################################################################################
 // # CARD
 // ##################################################################################
-export function GameCard({ card, gameId, havePairTurned }: CardProps) {
+export function GameCard({ card, gameId, havePairTurned, isComparing }: CardProps) {
   const router = useRouter()
   const [, flipCard] = useFlipCardMutation()
   const getBackgroundPosition = () => {
@@ -29,8 +30,8 @@ export function GameCard({ card, gameId, havePairTurned }: CardProps) {
   // -------------------
   const handleClick = async (e) => {
     // TODO: error handling + toast
-    const newSetting = !card.isTurned
     if (havePairTurned() || card.isMatched) { return }
+    const newSetting = !card.isTurned
     // TODO: need real assume success here!
     await flipCard({ gameId, cardId: card.id, isTurned: newSetting, isMatched: false })
   }
@@ -47,7 +48,7 @@ export function GameCard({ card, gameId, havePairTurned }: CardProps) {
   </div>
 
   return (
-    <div className={styles.card} onClick={handleClick}>
+    <div className={`${styles.card} ${isComparing ? styles.busy : null}`} onClick={isComparing ? null : handleClick}>
       {card.isMatched ? null : card.isTurned ? faceUp : faceDown}
     </div>
   )
