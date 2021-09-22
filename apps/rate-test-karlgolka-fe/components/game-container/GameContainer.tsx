@@ -53,12 +53,18 @@ export function GameContainer(props: GameContainerProps) {
     // check if have match, and act accordingly
     if (haveMatch()) {
       // A) got a match, make them both isMatch=true + isTurned=false and thereby hide from board
-      await flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: true })
-      await flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: true })
+      await Promise
+        .all([
+          flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: true }),
+          flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: true })
+        ])
     } else {
       // B) no match, so isTurned should be false for both (fire two flips!)
-      await flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: false })
-      await flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: false })
+      await Promise
+        .all([
+          flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: false }),
+          flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: false })
+        ])
     }
   }, [data, flipCard, haveMatch])
 
@@ -66,7 +72,6 @@ export function GameContainer(props: GameContainerProps) {
   React.useEffect(() => {
     if (havePairTurned()) {
       compareResultsAsync()
-      // setTimeout(compareResultsAsync, 200)
     }
   }, [compareResultsAsync, havePairTurned])
 
