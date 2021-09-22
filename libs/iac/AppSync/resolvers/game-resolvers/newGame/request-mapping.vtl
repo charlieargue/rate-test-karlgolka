@@ -1,27 +1,39 @@
 #set($freshGameId = $util.autoId() )
 #set($nowTime = $util.time.nowISO8601() )
 
-## BE:
+## given an array of "sprite names" 
+#set($arrSpriteNames = ["spade-a", "spade-2", "spade-3", "spade-4", "spade-5", "spade-6", "spade-7",
+"spade-8", "spade-9", "spade-10", "spade-j", "spade-q", "spade-k", "club-a", "club-2", "club-3",
+"club-4", "club-5", "club-6", "club-7", "club-8", "club-9", "club-10", "club-j", "club-q", "club-k",
+"diamond-a", "diamond-2", "diamond-3", "diamond-4", "diamond-5", "diamond-6", "diamond-7",
+"diamond-8", "diamond-9", "diamond-10", "diamond-j", "diamond-q", "diamond-k", "heart-a", "heart-2",
+"heart-3", "heart-4", "heart-5", "heart-6", "heart-7", "heart-8", "heart-9", "heart-10", "heart-j",
+"heart-q", "heart-k"])
+#set($arrLength = $arrSpriteNames.size())
 
-## - given an array of "sprite names" that match the above way to break them up (test this first!)
-##   - aka `a, 2, 3, 4, 5, 6, 7, 8, 9, 10, j, q, k` *  `spade, diamonds, hearts, clubs`
-## - run a ~~24~~ **12** loop with a while inside it and get 12 random "sprites" 
-##   (have a map and only grab a new one if it doesn't exist anymore, then loop/continue!)
+
+## TRY: just grab a random one, and USE IT and REMOVE IT!
+## #set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
+## #set($rndIndex=$mathTool.random(1,20)) 
+
+## #set($dummy = $linkedWIARRAY.remove("DEF-345"))
+
+
 ## - ok, so got 12 unique "pairs"
 ## - now can "shuffle" them
 ## - and now iterate over them and:
 ##   - insert into DB (with new guid generated for each), **TWICE!**
 
 {
- "version": "2018-05-29",
- "operation" : "PutItem",
- "key" : {
-   "id" : { "S": "$freshGameId"}
- },
- "attributeValues" : {
+  "version" : "2018-05-29",
+  "operation" : "PutItem",
+  "key" : {
+    "id" : { "S" : "$freshGameId" }
+  },
+  "attributeValues" : {
     "name" : { "S" : "Cart $friendlyTime" },
-    "cards": $util.dynamodb.toDynamoDBJson([]), 
-    "createdAt": $util.dynamodb.toDynamoDBJson($nowTime),
-    "updatedAt": $util.dynamodb.toDynamoDBJson($nowTime)
- }
+    "cards" : $ util.dynamodb.toDynamoDBJson([]),
+    "createdAt" : $ util.dynamodb.toDynamoDBJson($ nowTime),
+    "updatedAt" : $ util.dynamodb.toDynamoDBJson($ nowTime)
+  }
 }
