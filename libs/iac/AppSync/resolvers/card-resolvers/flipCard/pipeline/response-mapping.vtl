@@ -1,0 +1,11 @@
+## NOTE: the UpdateItem for updating Game.Card returns the entire GAME w/ cards... 
+##       so have to filter down to return just the one freshly-updated CARD only (for urql normlized caching)
+
+#foreach($item in $ctx.result.cards)
+    #if($item.id == "$ctx.args.cardId")
+        #set($data = $item)
+        #break
+    #end
+#end
+
+$util.toJson($data)

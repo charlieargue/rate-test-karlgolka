@@ -42,4 +42,9 @@ type Mutation {
     cardId: ID!
     isTurned: Boolean!
   ): Game!
+  flipCard(
+    gameId: ID!
+    cardId: ID!
+    isTurned: Boolean!
+  ): Card!
 }

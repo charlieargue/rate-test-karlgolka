@@ -1,0 +1,28 @@
+## -------------------------------------
+## FLIP / UPDATE GAME CARD
+## -------------------------------------
+
+## get INDEX of this card 
+#foreach ($item in $ctx.prev.result.cards)
+    #if($item.id == "$ctx.args.cardId")
+        #set($idx = $foreach.count)
+        #break
+    #end
+#end
+#set ($idxZeroBased = $idx - 1)
+{
+    "version" : "2017-02-28",
+    "operation" : "UpdateItem",
+    "key" : {
+        "id" : { "S": "$ctx.args.gameId"}
+    },
+    "update" : {
+        "expression" : "SET #cards[$idxZeroBased].isTurned = :isTurned",
+        "expressionNames": { 
+            "#cards" : "cards"
+        },
+        "expressionValues": {
+            ":isTurned" : { "B": "$ctx.args.isTurned" },
+        }
+    },
+}

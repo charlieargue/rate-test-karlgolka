@@ -15,14 +15,12 @@ interface SpriteMap {
 // # CARD
 // ##################################################################################
 export function GameCard({ card }: CardProps) {
-  console.log("🚀 ~ card.name", card.name)
   const getBackgroundPosition = () => {
     const [x, y] = cardSpriteMap[card.name]
     return `-${x}px -${y}px`
   }
-  const [flip, setFlip] = React.useState(true)
   const handleClick = (e) => {
-    setFlip(flip => !flip)
+    // setFlip(flip => !flip)
   }
 
   const faceUp = <div className={`${styles.cardGuts} ${styles.cardGutsCommon}`}
@@ -37,7 +35,7 @@ export function GameCard({ card }: CardProps) {
 
   return (
     <div className={styles.card} onClick={handleClick}>
-      {flip ? faceUp : faceDown}
+      {card.isTurned ? faceUp : faceDown}
     </div>
   )
 }

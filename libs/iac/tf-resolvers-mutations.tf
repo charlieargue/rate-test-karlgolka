@@ -16,4 +16,3 @@ resource "aws_appsync_resolver" "new_game_resolver" {
     aws_appsync_datasource.ratetest_dynamodb_game_datasource,
   ]
 }
-
