@@ -16,7 +16,7 @@
 #set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
 #set($rndIndex = $mathTool.random(0, $arrLength))
 #set($sprite = $arrSpriteNames.get($rndIndex))
-$utils.error($util.toJson($sprite))
+$utils.error($sprite)
 
 
 ## #set($dummy = $arrSpriteNames.remove($sprite)) ## will this work???
