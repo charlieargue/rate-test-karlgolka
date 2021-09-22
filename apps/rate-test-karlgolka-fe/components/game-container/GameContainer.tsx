@@ -57,19 +57,17 @@ export function GameContainer(props: GameContainerProps) {
     // check if have match, and act accordingly
     if (haveMatch()) {
       // A) got a match, make them both isMatch=true + isTurned=false and thereby hide from board
-      await Promise
-        .all([
+      await (Promise.all([
           flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: true }),
           flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: true })
-        ])
+        ]).then(() => console.log("after then")))
       setIsComparing(false)
     } else {
       // B) no match, so isTurned should be false for both (fire two flips!)
-      await Promise
-        .all([
+      await (Promise.all([
           flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: false }),
           flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: false })
-        ])
+        ]).then(() => console.log("after then")))
       setIsComparing(false)
     }
   }, [data, flipCard, haveMatch])
