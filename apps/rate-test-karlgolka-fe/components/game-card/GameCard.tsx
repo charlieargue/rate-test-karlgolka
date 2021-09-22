@@ -32,9 +32,7 @@ export function GameCard({ card, gameId, havePairTurned, isComparing }: CardProp
     // TODO: error handling + toast
     if (havePairTurned() || card.isMatched) { return }
     const newSetting = !card.isTurned
-    // TODO: need real assume success here!
-    console.log("🚀 handleClick ~ gameId", gameId)
-    console.log("🚀 handleClick ~ card.id", card.id)
+    // TODO: need real assume success here
     await flipCard({ gameId, cardId: card.id, isTurned: newSetting, isMatched: false })
   }
 

@@ -51,32 +51,32 @@ export function GameContainer(props: GameContainerProps) {
 
   // -------------------
   const compareResultsAsync = React.useCallback(async () => {
-    setIsComparing(true)
     const turnedCards = data.game.cards.filter((card) => card.isTurned === true)
-    console.log("🚀 ~ turnedCards", turnedCards)
-    // check if have match, and act accordingly
-    if (haveMatch()) {
-      // A) got a match, make them both isMatch=true + isTurned=false and thereby hide from board
-      await (Promise.all([
-        flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: true }),
-        flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: true })
-      ]))
-      setIsComparing(false)
-    } else {
-      // B) no match, so isTurned should be false for both (fire two flips!)
-      await (Promise.all([
-        flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: false }),
-        flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: false })
-      ]))
-      setIsComparing(false)
+    if (turnedCards.length === 2) {
+      // check if have match, and act accordingly
+      if (haveMatch()) {
+        // A) got a match, make them both isMatch=true + isTurned=false and thereby hide from board
+        await (Promise.all([
+          flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: true }),
+          flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: true })
+        ]))
+      } else {
+        // B) no match, so isTurned should be false for both (fire two flips!)
+        await (Promise.all([
+          flipCard({ gameId: data.game.id, cardId: turnedCards[0].id, isTurned: false, isMatched: false }),
+          flipCard({ gameId: data.game.id, cardId: turnedCards[1].id, isTurned: false, isMatched: false })
+        ]))
+      }
     }
   }, [data, flipCard, haveMatch])
 
   // -------------------
   React.useEffect(() => {
+    setIsComparing(true)
     if (havePairTurned()) {
       compareResultsAsync()
     }
+    setIsComparing(false)
   }, [compareResultsAsync, havePairTurned])
 
 
