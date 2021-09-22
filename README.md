@@ -1,10 +1,12 @@
-# 🎴 Memory Game! — Guaranteed Rate (rate.com)
+# 🎴 Memory Game! — Guaranteed Rate
 
-Take-home test by [Karl Golka](https://karlgolka.com) / contact@karlgolka.com done on `Sep 21-22, 2021`.
+* Take-home test by [Karl Golka](https://karlgolka.com) / contact@karlgolka.com done on `Sep 21-22, 2021`
+* ✅ URL: **https://rate-test-karlgolka.vercel.app/** 
+* 🎥 Demo/Loom: 
 
-## ✅ URL:
 
-* **https://rate-test-karlgolka.vercel.app/** (Vercel URL)
+
+
 
 
 ## 💡 Lighthouse Results
