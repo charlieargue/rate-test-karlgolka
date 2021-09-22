@@ -1,0 +1,27 @@
+#set($freshGameId = $util.autoId() )
+#set($nowTime = $util.time.nowISO8601() )
+
+## BE:
+
+## - given an array of "sprite names" that match the above way to break them up (test this first!)
+##   - aka `a, 2, 3, 4, 5, 6, 7, 8, 9, 10, j, q, k` *  `spade, diamonds, hearts, clubs`
+## - run a ~~24~~ **12** loop with a while inside it and get 12 random "sprites" 
+##   (have a map and only grab a new one if it doesn't exist anymore, then loop/continue!)
+## - ok, so got 12 unique "pairs"
+## - now can "shuffle" them
+## - and now iterate over them and:
+##   - insert into DB (with new guid generated for each), **TWICE!**
+
+{
+ "version": "2018-05-29",
+ "operation" : "PutItem",
+ "key" : {
+   "id" : { "S": "$freshGameId"}
+ },
+ "attributeValues" : {
+    "name" : { "S" : "Cart $friendlyTime" },
+    "cards": $util.dynamodb.toDynamoDBJson([]), 
+    "createdAt": $util.dynamodb.toDynamoDBJson($nowTime),
+    "updatedAt": $util.dynamodb.toDynamoDBJson($nowTime)
+ }
+}

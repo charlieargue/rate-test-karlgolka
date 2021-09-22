@@ -1,15 +1,15 @@
-import { useRouter } from 'next/router';
-import React from 'react';
-import Button from '../button/Button';
-import styles from './NewGameButton.module.scss';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import { useRouter } from 'next/router'
+import React from 'react'
+import Button from '../button/Button'
+import styles from './NewGameButton.module.scss'
+import { confirmAlert } from 'react-confirm-alert' // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 
 /* eslint-disable-next-line */
 export interface NewGameButtonProps {
   setGame: React.Dispatch<React.SetStateAction<{
-    id: string;
-    cards: any[];
+    id: string
+    cards: unknown[]
   }>>
 }
 
@@ -42,7 +42,7 @@ export function NewGameButton({ setGame }: NewGameButtonProps) {
   }
   return (
     <Button onClick={handleClick}>New Game</Button>
-  );
+  )
 }
 
-export default NewGameButton;
+export default NewGameButton
