@@ -9,13 +9,14 @@
 "diamond-8", "diamond-9", "diamond-10", "diamond-j", "diamond-q", "diamond-k", "heart-a", "heart-2",
 "heart-3", "heart-4", "heart-5", "heart-6", "heart-7", "heart-8", "heart-9", "heart-10", "heart-j",
 "heart-q", "heart-k"])
+
 #set($arrLength = $arrSpriteNames.size())
 
 ## grab a random one, USE IT, and REMOVE IT!
-#set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
-#set($rndIndex=$mathTool.random(0, $arrLength - 1)) 
-#set($sprite = $arrSpriteNames.get(0))
-#set($dummy = $arrSpriteNames.remove($sprite))
+## #set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
+## #set($rndIndex=$mathTool.random(0, $arrLength - 1)) 
+## #set($sprite = $arrSpriteNames.get(0))
+## #set($dummy = $arrSpriteNames.remove($sprite))
 
 
 ## - ok, so got 12 unique "pairs"
