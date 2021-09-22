@@ -19,17 +19,17 @@ $util.qr($arrSpriteNames.set($rndIndex, "---")) ## SET it to null
 
 
 ## - ok, so get 12 unique "pairs"
-## #set($cards = [])
-## #foreach($idx in [0..11])
-##     #set($freshCardId = $util.autoId() )
-##     #set( $card = {
-##       "id": $freshCardId,
-##       "name": $sprite,
-##       "createdAt" : $nowTime,
-##       "updatedAt" : $nowTime
-##     } )
-##     $util.qr($cards.add($card))
-## #end
+#set($cards = [])
+#foreach($idx in [0..11])
+    #set($freshCardId = $util.autoId() )
+    #set( $card = {
+      "id": $freshCardId,
+      "name": $sprite,
+      "createdAt" : $nowTime,
+      "updatedAt" : $nowTime
+    } )
+    $util.qr($cards.add($card))
+#end
 
 
 ## - now can "shuffle" them
