@@ -69,7 +69,6 @@ export function GameContainer(props: GameContainerProps) {
     }
   }, [compareResultsAsync, havePairTurned])
 
-  // TODO: clean-up and Kent Dobbs-ify all this
   let content
   if (haveWin()) {
     content = <Confetti
