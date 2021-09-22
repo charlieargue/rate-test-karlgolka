@@ -37,11 +37,6 @@ type Query  {
 ## ------------------------------
 type Mutation {
   newGame: Game!
-  updateGame(
-    gameId: ID!
-    cardId: ID!
-    isTurned: Boolean!
-  ): Game!
   flipCard(
     gameId: ID!
     cardId: ID!

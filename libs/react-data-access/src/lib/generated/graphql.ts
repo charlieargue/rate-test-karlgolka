@@ -39,7 +39,6 @@ export type Mutation = {
   __typename?: 'Mutation';
   flipCard: Card;
   newGame: Game;
-  updateGame: Game;
 };
 
 
@@ -47,13 +46,6 @@ export type MutationFlipCardArgs = {
   cardId: Scalars['ID'];
   gameId: Scalars['ID'];
   isMatched: Scalars['Boolean'];
-  isTurned: Scalars['Boolean'];
-};
-
-
-export type MutationUpdateGameArgs = {
-  cardId: Scalars['ID'];
-  gameId: Scalars['ID'];
   isTurned: Scalars['Boolean'];
 };
 
@@ -263,7 +255,6 @@ export type GameResolvers<ContextType = any, ParentType extends ResolversParentT
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   flipCard?: Resolver<ResolversTypes['Card'], ParentType, ContextType, RequireFields<MutationFlipCardArgs, 'cardId' | 'gameId' | 'isMatched' | 'isTurned'>>;
   newGame?: Resolver<ResolversTypes['Game'], ParentType, ContextType>;
-  updateGame?: Resolver<ResolversTypes['Game'], ParentType, ContextType, RequireFields<MutationUpdateGameArgs, 'cardId' | 'gameId' | 'isTurned'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
