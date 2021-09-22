@@ -19,7 +19,7 @@
 ## #set($rndIndex = $math.floor($random)​)
 ## #set($sprite = $arrSpriteNames.get($rndIndex))
 ## $arrSpriteNames.set($rndIndex, "---") ## SET it to null
-$util.validate(false, "error karlgolka", "error karlgolka2", $util.toJson($random) )
+$util.validate(false, "error $random.toString()", "error karlgolka3", $util.toJson($random) )
 
 ## - ok, so got 12 unique "pairs"
 ## - now can "shuffle" them
