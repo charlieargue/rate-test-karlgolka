@@ -4,6 +4,7 @@ import Button from '../button/Button'
 import styles from './NewGameButton.module.scss'
 import { confirmAlert } from 'react-confirm-alert' // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+import { useNewGameMutation } from '@rate-test-karlgolka/react-data-access'
 
 /* eslint-disable-next-line */
 export interface NewGameButtonProps {
@@ -13,12 +14,27 @@ export interface NewGameButtonProps {
   }>>
 }
 
+// ##################################################################################
+// # New Game BUTTON
+// ##################################################################################
 export function NewGameButton({ setGame }: NewGameButtonProps) {
+  const [, newGame] = useNewGameMutation()
   const router = useRouter()
-  const newGame = () => {
-    router.push('?game=abcd')
+
+  // -------------------
+  const newGameHandler = async () => {
+    const { error, data } = await newGame()
+    if (!error && data?.newGame?.id) {
+      console.log("🚀 ~ data", data)
+      setGame(data?.newGame)
+      router.push(`?game=${data?.newGame?.id}`)
+    } else if (error) {
+      console.log(error)
+      // TODO: toast "an error has occurred" + sanitized details
+    }
   }
 
+  // -------------------
   const handleClick = (e) => {
     if (router.query.game) {
       confirmAlert({
@@ -27,7 +43,7 @@ export function NewGameButton({ setGame }: NewGameButtonProps) {
         buttons: [
           {
             label: 'Yes',
-            onClick: newGame
+            onClick: newGameHandler
           },
           {
             label: 'No',
@@ -36,7 +52,7 @@ export function NewGameButton({ setGame }: NewGameButtonProps) {
         ]
       })
     } else {
-      newGame()
+      newGameHandler()
     }
 
   }

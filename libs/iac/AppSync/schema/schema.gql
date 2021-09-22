@@ -29,8 +29,7 @@ type Card {
 #  QUERIES
 ## ------------------------------
 type Query  {
-  # need this test query or codegen craps out
-  test: Boolean
+  game(id: ID!): Game!
 }
 
 ## ------------------------------
@@ -43,6 +42,4 @@ type Mutation {
     cardId: ID!
     isTurned: Boolean!
   ): Game!
-
-  
 }

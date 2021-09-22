@@ -5,26 +5,23 @@ import Loading from '../loading/loading';
 import Logo from '../logo/Logo';
 import NewGameButton from '../new-game-button/NewGameButton';
 import styles from './GameContainer.module.scss';
+import { Game } from '@rate-test-karlgolka/react-data-access'
 
 /* eslint-disable-next-line */
 export interface GameContainerProps { }
 
-const initialState = {
-  id: "123-245asdfasdf-234234lkj-666",
-  cards: []
-}
-
 export function GameContainer(props: GameContainerProps) {
   const router = useRouter()
-  const [game, setGame] = React.useState(initialState)
+  const [game, setGame] = React.useState<Game | null>(null)
 
   console.log(router.query.game);
 
+  // TODO: clean-up and Kent Dobbs all this
   let content
-  if (router.query.game) {
+  if (router.query.game && game?.id) {
     content = (
       <div className={styles.game}>
-        {new Array(24).fill({}).map((a, idx) => (
+        {game.cards.length && game.cards.map((a, idx) => (
           <Card key={idx} />
         ))}
       </div>
