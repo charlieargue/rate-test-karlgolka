@@ -17,7 +17,6 @@ export interface GameContainerProps { }
 // ##################################################################################
 export function GameContainer(props: GameContainerProps) {
   const [isComparing, setIsComparing] = React.useState(false)
-  console.log("🚀 ~ isComparing", isComparing)
   const size = useWindowSize()
   const [, flipCard] = useFlipCardMutation()
   const router = useRouter()
