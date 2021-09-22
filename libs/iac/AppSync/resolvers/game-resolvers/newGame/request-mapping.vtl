@@ -28,9 +28,10 @@ $arrSpriteNames.set($rndIndex, "---") ## SET it to null
       "createdAt" : $nowTime,
       "updatedAt" : $nowTime
     } )
-    $util.qr($cards.add($util.toJson($card)))
+    $util.qr($cards.add($card))
 #end
-## $util.validate(false, $util.toJson($cards) )
+
+
 ## - now can "shuffle" them
 ## - and now iterate over them and:
 ##   - insert into DB (with new guid generated for each), **TWICE!**
@@ -42,7 +43,7 @@ $arrSpriteNames.set($rndIndex, "---") ## SET it to null
     "id" : { "S" : "$freshGameId" }
   },
   "attributeValues" : {
-    "cards" : $util.toJson($cards),
+    "cards" : $util.dynamodb.toDynamoDBJson([]),
     "createdAt" : $util.dynamodb.toDynamoDBJson($nowTime),
     "updatedAt" : $util.dynamodb.toDynamoDBJson($nowTime)
   }
