@@ -89,10 +89,12 @@ export function GameContainer(props: GameContainerProps) {
         ))}
       </div>
     )
-  } else {
+  } else if (fetching) {
     content = <Loading />
+  } else {
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    content = <></> // idle -> make a new game!
   }
-  // return <></> // idle -> make a new game!
 
   return (<>
     <header>
