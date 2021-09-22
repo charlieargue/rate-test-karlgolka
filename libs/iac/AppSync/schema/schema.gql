@@ -13,7 +13,7 @@ type Card {
   name: String!
   isTurned: Boolean!
   isMatched: Boolean!
-  position: Number!
+  position: Float!
   createdAt: String!
   updatedAt: String!
 }
