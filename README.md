@@ -9,7 +9,7 @@ Take-home test by [Karl Golka](https://karlgolka.com) / contact@karlgolka.com do
 
 ## 💡 Lighthouse Results
 
-![image-20210922062127503](/image-20210922062127503.png)
+![image-202109220621275032](./img-20210922062127503.png)
 
 
 
