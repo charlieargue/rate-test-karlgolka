@@ -6,9 +6,14 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 /* eslint-disable-next-line */
-export interface NewGameButtonProps { }
+export interface NewGameButtonProps {
+  setGame: React.Dispatch<React.SetStateAction<{
+    id: string;
+    cards: any[];
+  }>>
+}
 
-export function NewGameButton(props: NewGameButtonProps) {
+export function NewGameButton({ setGame }: NewGameButtonProps) {
   const router = useRouter()
   const newGame = () => {
     router.push('?game=abcd')

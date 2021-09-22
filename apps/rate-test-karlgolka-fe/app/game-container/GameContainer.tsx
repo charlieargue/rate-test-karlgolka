@@ -18,8 +18,6 @@ export function GameContainer(props: GameContainerProps) {
   const router = useRouter()
   const [game, setGame] = React.useState(initialState)
 
-
-
   console.log(router.query.game);
 
   let content
@@ -39,7 +37,7 @@ export function GameContainer(props: GameContainerProps) {
   return (<>
     <header>
       <Logo />
-      <NewGameButton />
+      <NewGameButton setGame={setGame} />
     </header>
     <main>
       {content}
