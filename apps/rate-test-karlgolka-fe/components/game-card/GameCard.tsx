@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, useFlipCardMutation } from '@rate-test-karlgolka/react-data-access'
 import styles from './GameCard.module.scss'
+import { useRouter } from 'next/router'
 
 /* eslint-disable-next-line */
 export interface CardProps {
@@ -17,6 +18,7 @@ interface SpriteMap {
 // # CARD
 // ##################################################################################
 export function GameCard({ card, gameId, havePairTurned }: CardProps) {
+  const router = useRouter()
   const [, flipCard] = useFlipCardMutation()
   const getBackgroundPosition = () => {
     const [x, y] = cardSpriteMap[card.name]
@@ -41,7 +43,7 @@ export function GameCard({ card, gameId, havePairTurned }: CardProps) {
 
   const faceDown = <div className={`${styles.placeholder} ${styles.cardGutsCommon}`}>
     <span role='img' aria-label='emoji'>👆</span>
-    {card.name}
+    {router.query.help ? card.name : null}
   </div>
 
   return (
