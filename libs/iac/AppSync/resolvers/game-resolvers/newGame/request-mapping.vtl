@@ -12,14 +12,14 @@
 
 ## grab a random one, USE IT, and REMOVE IT!
 #set($arrLength = $arrSpriteNames.size() - 1)
-#set($random = $math.random(0,$arrLength))
+#set($random = $math.random(0, $arrLength))
 
 
 
 ## #set($rndIndex = $math.floor($random)​)
 ## #set($sprite = $arrSpriteNames.get($rndIndex))
 ## $arrSpriteNames.set($rndIndex, "---") ## SET it to null
-$util.validate(false, $util.toJson($arrSpriteNames) )
+$util.validate(false, "error karlgolka", "error karlgolka2", $util.toJson($random) )
 
 ## - ok, so got 12 unique "pairs"
 ## - now can "shuffle" them
