@@ -19,7 +19,7 @@
 
 ## $util.error($util.toJson($sprite))
 ## $utils.error("got a sprite" + $sprite, $sprite, { "sprite": $util.dynamodb.toDynamoDBJson($sprite)}, [])
-#set($msg = "got a sprite: $sprite")
+#set($msg = "got a hmmm sprite: " + $util.toJson($sprite))
 $utils.error($msg, $sprite, {}, [])
 
 
