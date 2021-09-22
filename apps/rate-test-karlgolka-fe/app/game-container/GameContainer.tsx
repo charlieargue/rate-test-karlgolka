@@ -14,7 +14,6 @@ export interface GameContainerProps { }
 // # GAME CONTAINER
 // ##################################################################################
 export function GameContainer(props: GameContainerProps) {
-  const [isThinking, setIsThinking] = React.useState(false) // so can't flip other cards while comparing a flipped pair for a match
   const router = useRouter()
   const [{ data, fetching }] = useGetGameQuery({
     variables: {
@@ -47,8 +46,6 @@ export function GameContainer(props: GameContainerProps) {
             key={idx}
             card={card}
             gameId={data.game.id}
-            isThinking={isThinking}
-            setIsThinking={setIsThinking}
             havePairTurned={havePairTurned}
             haveMatch={haveMatch} 
             findOtherFlippedCardId={findOtherFlippedCardId}/>

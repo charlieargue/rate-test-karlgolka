@@ -6,8 +6,6 @@ import styles from './GameCard.module.scss'
 export interface CardProps {
   card: Card
   gameId: string
-  isThinking: boolean
-  setIsThinking: React.Dispatch<React.SetStateAction<boolean>>
   havePairTurned(): boolean
   haveMatch(): boolean
   findOtherFlippedCardId(excludeId): string
@@ -20,7 +18,7 @@ interface SpriteMap {
 // ##################################################################################
 // # CARD
 // ##################################################################################
-export function GameCard({ card, gameId, isThinking, setIsThinking, havePairTurned, haveMatch, findOtherFlippedCardId }: CardProps) {
+export function GameCard({ card, gameId, havePairTurned, haveMatch, findOtherFlippedCardId }: CardProps) {
   const [, flipCard] = useFlipCardMutation()
   const getBackgroundPosition = () => {
     const [x, y] = cardSpriteMap[card.name]
@@ -28,34 +26,43 @@ export function GameCard({ card, gameId, isThinking, setIsThinking, havePairTurn
   }
 
   // 🔴 ALERT: TODO: needs useReducer just for the CARD (in addition to useAsyncReducer)
+  console.log("🚀 ~ havePairTurned()", havePairTurned())
+
+  const notClickedSelfOver = (): boolean => {
+    // if this card is turned over AND we have clicked it...
+    return true
+  }
 
   // -------------------
   const handleClick = async (e) => {
     // TODO: error handling + toast
-    if (!isThinking) {
-      setIsThinking(true)
       // sorta ASSUME SUCCESS: set it as a flipped pair if turned over
       const newSetting = !card.isTurned
       // TODO: need real assume success here!
+      if(havePairTurned()) return
       await flipCard({ gameId, cardId: card.id, isTurned: newSetting, isMatched: false })
+      
 
-      // using derived state
-      if (havePairTurned()) {
-        const otherCardId = findOtherFlippedCardId(card.id)
-        // check if have match, and act accordingly
-        if (haveMatch()) {
-          // A) got a match, make them both isMatch=true + isTurned=false and thereby hide from board
-          await flipCard({ gameId, cardId: card.id, isTurned: false, isMatched: true })
-          await flipCard({ gameId, cardId: otherCardId, isTurned: false, isMatched: true })
-        } else {
-          // B) no match, so isTurned should be false for both (fire two flips!)
-          await flipCard({ gameId, cardId: card.id, isTurned: false, isMatched: false })
-          await flipCard({ gameId, cardId: otherCardId, isTurned: false, isMatched: false })
-        }
-        setIsThinking(false)
-      }
-      setIsThinking(false)
-    }
+
+        // // using derived state
+        // console.log("🚀 ~ havePairTurned()", havePairTurned())
+        // if (havePairTurned() && notClickedSelfOver()) {
+        //   const otherCardId = findOtherFlippedCardId(card.id)
+        //   console.log("🚀 ~ otherCardId", otherCardId)
+        //   // check if have match, and act accordingly
+        //   if (haveMatch()) {
+        //     console.log("🚀 ~ HAVE MATCH !!!!!! ✅ ")
+        //     // A) got a match, make them both isMatch=true + isTurned=false and thereby hide from board
+        //     await flipCard({ gameId, cardId: card.id, isTurned: false, isMatched: true })
+        //     await flipCard({ gameId, cardId: otherCardId, isTurned: false, isMatched: true })
+        //   } else {
+        //     console.log("🚀 ~ nope, dont have MATCH ..... 🔴 ")
+        //     // B) no match, so isTurned should be false for both (fire two flips!)
+        //     await flipCard({ gameId, cardId: card.id, isTurned: false, isMatched: false })
+        //     await flipCard({ gameId, cardId: otherCardId, isTurned: false, isMatched: false })
+        //   }
+        // }
+     
   }
 
   const faceUp = <div className={`${styles.cardGuts} ${styles.cardGutsCommon}`}
