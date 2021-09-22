@@ -6,7 +6,7 @@ Take-home test by [Karl Golka](https://karlgolka.com) / contact@karlgolka.com do
 
 ## 💡 Lighthouse Results
 
-![image-20210922062127503](/Users/karlgolka/PROJECTS/FYI/_typora_images/image-20210922062127503.png)
+![image-20210922062127503](/image-20210922062127503.png)
 
 
 
