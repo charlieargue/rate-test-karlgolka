@@ -17,7 +17,9 @@
 #set($rndIndex = $mathTool.random(0, $arrLength))
 #set($sprite = $arrSpriteNames.get($rndIndex))
 
-$utils.error($sprite)
+## $util.error($util.toJson($sprite))
+$utils.error("got a sprite", $sprite, {}, [])
+
 
 
 ## #set($dummy = $arrSpriteNames.remove($sprite)) ## will this work???
