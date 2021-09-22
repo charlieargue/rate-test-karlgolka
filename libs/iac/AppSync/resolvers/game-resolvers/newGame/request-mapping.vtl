@@ -11,13 +11,26 @@
 "heart-q", "heart-k"])
 
 ## grab a random one, USE IT, and REMOVE IT!
+## NOTE: $math is BLOCKED by AppSync, must use $util.math...
 #set($arrLength = $arrSpriteNames.size() - 1)
 #set($rndIndex = $util.math.randomWithinRange(0, $arrLength))
 #set($sprite = $arrSpriteNames.get($rndIndex))
 $arrSpriteNames.set($rndIndex, "---") ## SET it to null
-$util.validate(false, $util.toJson($arrSpriteNames) )
 
-## - ok, so got 12 unique "pairs"
+
+## - ok, so get 12 unique "pairs"
+#set($cards = [])
+#foreach($idx in [0..11])
+    #set($freshCardId = $util.autoId() )
+    #set( $card = {
+      "id": $freshCardId,
+      "name": $sprite,
+      "createdAt" : $nowTime,
+      "updatedAt" : $nowTime
+    } )
+    $util.qr($cards.add($card))
+#end
+## $util.validate(false, $util.toJson($cards) )
 ## - now can "shuffle" them
 ## - and now iterate over them and:
 ##   - insert into DB (with new guid generated for each), **TWICE!**
@@ -29,7 +42,7 @@ $util.validate(false, $util.toJson($arrSpriteNames) )
     "id" : { "S" : "$freshGameId" }
   },
   "attributeValues" : {
-    "cards" : $util.dynamodb.toDynamoDBJson([]),
+    "cards" : $util.dynamodb.toDynamoDBJson($cards),
     "createdAt" : $util.dynamodb.toDynamoDBJson($nowTime),
     "updatedAt" : $util.dynamodb.toDynamoDBJson($nowTime)
   }
