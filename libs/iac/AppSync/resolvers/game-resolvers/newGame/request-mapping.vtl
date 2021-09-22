@@ -16,10 +16,11 @@
 #set($mathTool = $serviceLocator.findService("org.apache.velocity.tools.generic.MathTool"))
 #set($rndIndex = $mathTool.random(0, $arrLength))
 #set($sprite = $arrSpriteNames.get($rndIndex))
-$util.validate(false, $util.toJson($sprite) )
+$utils.error($util.toJson($sprite))
+
+
 ## #set($dummy = $arrSpriteNames.remove($sprite)) ## will this work???
-
-
+## $util.validate(false, $util.toJson($sprite) )
 ## - ok, so got 12 unique "pairs"
 ## - now can "shuffle" them
 ## - and now iterate over them and:
